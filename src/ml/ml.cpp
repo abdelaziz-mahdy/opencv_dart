@@ -1,5 +1,3 @@
-/* This file is originally from gocv project Licensed: Apache 2.0 license. Copyright (c) 2017-2021 The Hybrid Group. Modified by Rainyl. Licensed: Apache 2.0 license. Copyright (c) 2024 Rainyl. */
-
 #include "ml.h"
 #include <memory>
 #include <vector>
@@ -11,19 +9,19 @@ CvStatus KNearest_Create(KNearest *rval) {
     END_WRAP
 }
 
-CvStatus KNearest_Close(KNearest *knn) {
+void KNearest_Close(KNearest *knn) {
     CVD_FREE(knn)
 }
 
 CvStatus KNearest_Train(KNearest knn, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    knn.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*knn.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus KNearest_FindNearest(KNearest knn, Mat samples, int k, Mat results, Mat neighborResponses, Mat dists) {
     BEGIN_WRAP
-    knn.ptr->findNearest(*samples.ptr, k, *results.ptr, *neighborResponses.ptr, *dists.ptr);
+    (*knn.ptr)->findNearest(*samples.ptr, k, *results.ptr, *neighborResponses.ptr, *dists.ptr);
     END_WRAP
 }
 
@@ -34,19 +32,19 @@ CvStatus SVM_Create(SVM *rval) {
     END_WRAP
 }
 
-CvStatus SVM_Close(SVM *svm) {
+void SVM_Close(SVM *svm) {
     CVD_FREE(svm)
 }
 
 CvStatus SVM_Train(SVM svm, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    svm.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*svm.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus SVM_Predict(SVM svm, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    svm.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*svm.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }
 
@@ -57,19 +55,19 @@ CvStatus DTrees_Create(DTrees *rval) {
     END_WRAP
 }
 
-CvStatus DTrees_Close(DTrees *dtree) {
+void DTrees_Close(DTrees *dtree) {
     CVD_FREE(dtree)
 }
 
 CvStatus DTrees_Train(DTrees dtree, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    dtree.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*dtree.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus DTrees_Predict(DTrees dtree, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    dtree.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*dtree.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }
 
@@ -80,19 +78,19 @@ CvStatus RTrees_Create(RTrees *rval) {
     END_WRAP
 }
 
-CvStatus RTrees_Close(RTrees *rtree) {
+void RTrees_Close(RTrees *rtree) {
     CVD_FREE(rtree)
 }
 
 CvStatus RTrees_Train(RTrees rtree, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    rtree.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*rtree.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus RTrees_Predict(RTrees rtree, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    rtree.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*rtree.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }
 
@@ -103,19 +101,19 @@ CvStatus Boost_Create(Boost *rval) {
     END_WRAP
 }
 
-CvStatus Boost_Close(Boost *boost) {
+void Boost_Close(Boost *boost) {
     CVD_FREE(boost)
 }
 
 CvStatus Boost_Train(Boost boost, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    boost.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*boost.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus Boost_Predict(Boost boost, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    boost.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*boost.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }
 
@@ -126,19 +124,19 @@ CvStatus ANN_MLP_Create(ANN_MLP *rval) {
     END_WRAP
 }
 
-CvStatus ANN_MLP_Close(ANN_MLP *ann) {
+void ANN_MLP_Close(ANN_MLP *ann) {
     CVD_FREE(ann)
 }
 
 CvStatus ANN_MLP_Train(ANN_MLP ann, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    ann.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*ann.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus ANN_MLP_Predict(ANN_MLP ann, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    ann.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*ann.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }
 
@@ -149,19 +147,19 @@ CvStatus LogisticRegression_Create(LogisticRegression *rval) {
     END_WRAP
 }
 
-CvStatus LogisticRegression_Close(LogisticRegression *logreg) {
+void LogisticRegression_Close(LogisticRegression *logreg) {
     CVD_FREE(logreg)
 }
 
 CvStatus LogisticRegression_Train(LogisticRegression logreg, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    logreg.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*logreg.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus LogisticRegression_Predict(LogisticRegression logreg, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    logreg.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*logreg.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }
 
@@ -172,18 +170,18 @@ CvStatus NormalBayesClassifier_Create(NormalBayesClassifier *rval) {
     END_WRAP
 }
 
-CvStatus NormalBayesClassifier_Close(NormalBayesClassifier *nbayes) {
+void NormalBayesClassifier_Close(NormalBayesClassifier *nbayes) {
     CVD_FREE(nbayes)
 }
 
 CvStatus NormalBayesClassifier_Train(NormalBayesClassifier nbayes, Mat samples, int layout, Mat responses) {
     BEGIN_WRAP
-    nbayes.ptr->train(*samples.ptr, layout, *responses.ptr);
+    (*nbayes.ptr)->train(*samples.ptr, layout, *responses.ptr);
     END_WRAP
 }
 
 CvStatus NormalBayesClassifier_Predict(NormalBayesClassifier nbayes, Mat samples, Mat results, int flags) {
     BEGIN_WRAP
-    nbayes.ptr->predict(*samples.ptr, *results.ptr, flags);
+    (*nbayes.ptr)->predict(*samples.ptr, *results.ptr, flags);
     END_WRAP
 }

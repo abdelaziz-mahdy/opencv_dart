@@ -98,6 +98,58 @@ class CvNative {
   late final _AKAZE_DetectAndCompute = _AKAZE_DetectAndComputePtr.asFunction<
       CvStatus Function(AKAZE, Mat, Mat, Mat, ffi.Pointer<VecKeyPoint>)>();
 
+  void ANN_MLP_Close(
+    ffi.Pointer<ANN_MLP> self,
+  ) {
+    return _ANN_MLP_Close(
+      self,
+    );
+  }
+
+  late final _ANN_MLP_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ANN_MLP>)>>(
+          'ANN_MLP_Close');
+  late final _ANN_MLP_Close =
+      _ANN_MLP_ClosePtr.asFunction<void Function(ffi.Pointer<ANN_MLP>)>();
+
+  CvStatus ANN_MLP_Create(
+    ffi.Pointer<ANN_MLP> rval,
+  ) {
+    return _ANN_MLP_Create(
+      rval,
+    );
+  }
+
+  late final _ANN_MLP_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<ANN_MLP>)>>(
+          'ANN_MLP_Create');
+  late final _ANN_MLP_Create =
+      _ANN_MLP_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<ANN_MLP>)>();
+
+  CvStatus ANN_MLP_Predict(
+    ANN_MLP self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _ANN_MLP_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _ANN_MLP_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(ANN_MLP, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('ANN_MLP_Predict');
+  late final _ANN_MLP_Predict = _ANN_MLP_PredictPtr.asFunction<
+      CvStatus Function(
+          ANN_MLP, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
   CvStatus AdaptiveThreshold(
     Mat src,
     Mat dst,
@@ -2113,6 +2165,58 @@ class CvNative {
       _lookup<ffi.NativeFunction<CvStatus Function(Mat, Mat, Size)>>('Blur');
   late final _Blur = _BlurPtr.asFunction<CvStatus Function(Mat, Mat, Size)>();
 
+  void Boost_Close(
+    ffi.Pointer<Boost> self,
+  ) {
+    return _Boost_Close(
+      self,
+    );
+  }
+
+  late final _Boost_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Boost>)>>(
+          'Boost_Close');
+  late final _Boost_Close =
+      _Boost_ClosePtr.asFunction<void Function(ffi.Pointer<Boost>)>();
+
+  CvStatus Boost_Create(
+    ffi.Pointer<Boost> rval,
+  ) {
+    return _Boost_Create(
+      rval,
+    );
+  }
+
+  late final _Boost_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<Boost>)>>(
+          'Boost_Create');
+  late final _Boost_Create =
+      _Boost_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<Boost>)>();
+
+  CvStatus Boost_Predict(
+    Boost self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _Boost_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _Boost_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(Boost, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('Boost_Predict');
+  late final _Boost_Predict = _Boost_PredictPtr.asFunction<
+      CvStatus Function(
+          Boost, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
   CvStatus BoundingRect(
     VecPoint pts,
     ffi.Pointer<Rect> rval,
@@ -2916,6 +3020,58 @@ class CvNative {
   late final _CvtColor =
       _CvtColorPtr.asFunction<CvStatus Function(Mat, Mat, int)>();
 
+  void DTrees_Close(
+    ffi.Pointer<DTrees> self,
+  ) {
+    return _DTrees_Close(
+      self,
+    );
+  }
+
+  late final _DTrees_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<DTrees>)>>(
+          'DTrees_Close');
+  late final _DTrees_Close =
+      _DTrees_ClosePtr.asFunction<void Function(ffi.Pointer<DTrees>)>();
+
+  CvStatus DTrees_Create(
+    ffi.Pointer<DTrees> rval,
+  ) {
+    return _DTrees_Create(
+      rval,
+    );
+  }
+
+  late final _DTrees_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<DTrees>)>>(
+          'DTrees_Create');
+  late final _DTrees_Create =
+      _DTrees_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<DTrees>)>();
+
+  CvStatus DTrees_Predict(
+    DTrees self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _DTrees_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _DTrees_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(DTrees, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('DTrees_Predict');
+  late final _DTrees_Predict = _DTrees_PredictPtr.asFunction<
+      CvStatus Function(
+          DTrees, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
   CvStatus DetailEnhance(
     Mat src,
     Mat dst,
@@ -3136,6 +3292,58 @@ class CvNative {
   late final _DrawMatches = _DrawMatchesPtr.asFunction<
       CvStatus Function(Mat, VecKeyPoint, Mat, VecKeyPoint, VecDMatch, Mat,
           Scalar, Scalar, VecChar, int)>();
+
+  void EM_Close(
+    ffi.Pointer<EM> self,
+  ) {
+    return _EM_Close(
+      self,
+    );
+  }
+
+  late final _EM_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<EM>)>>(
+          'EM_Close');
+  late final _EM_Close =
+      _EM_ClosePtr.asFunction<void Function(ffi.Pointer<EM>)>();
+
+  CvStatus EM_Create(
+    ffi.Pointer<EM> rval,
+  ) {
+    return _EM_Create(
+      rval,
+    );
+  }
+
+  late final _EM_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<EM>)>>(
+          'EM_Create');
+  late final _EM_Create =
+      _EM_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<EM>)>();
+
+  CvStatus EM_Predict(
+    EM self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _EM_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _EM_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(EM, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('EM_Predict');
+  late final _EM_Predict = _EM_PredictPtr.asFunction<
+      CvStatus Function(
+          EM, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
   CvStatus EdgePreservingFilter(
     Mat src,
@@ -5191,6 +5399,58 @@ class CvNative {
       CvStatus Function(VecPoint2f, int, Mat, TermCriteria, int, int, Mat,
           ffi.Pointer<ffi.Double>)>();
 
+  void KNearest_Close(
+    ffi.Pointer<KNearest> self,
+  ) {
+    return _KNearest_Close(
+      self,
+    );
+  }
+
+  late final _KNearest_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<KNearest>)>>(
+          'KNearest_Close');
+  late final _KNearest_Close =
+      _KNearest_ClosePtr.asFunction<void Function(ffi.Pointer<KNearest>)>();
+
+  CvStatus KNearest_Create(
+    ffi.Pointer<KNearest> rval,
+  ) {
+    return _KNearest_Create(
+      rval,
+    );
+  }
+
+  late final _KNearest_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<KNearest>)>>(
+          'KNearest_Create');
+  late final _KNearest_Create = _KNearest_CreatePtr.asFunction<
+      CvStatus Function(ffi.Pointer<KNearest>)>();
+
+  CvStatus KNearest_Predict(
+    KNearest self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int k,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _KNearest_Predict(
+      self,
+      samples,
+      results,
+      k,
+      rval,
+    );
+  }
+
+  late final _KNearest_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(KNearest, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('KNearest_Predict');
+  late final _KNearest_Predict = _KNearest_PredictPtr.asFunction<
+      CvStatus Function(
+          KNearest, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
   void KalmanFilter_Close(
     ffi.Pointer<KalmanFilter> self,
   ) {
@@ -5948,6 +6208,61 @@ class CvNative {
               Mat, Mat, Point2f, ffi.Double, ffi.Int)>>('LogPolar');
   late final _LogPolar = _LogPolarPtr.asFunction<
       CvStatus Function(Mat, Mat, Point2f, double, int)>();
+
+  void LogisticRegression_Close(
+    ffi.Pointer<LogisticRegression> self,
+  ) {
+    return _LogisticRegression_Close(
+      self,
+    );
+  }
+
+  late final _LogisticRegression_ClosePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<LogisticRegression>)>>(
+      'LogisticRegression_Close');
+  late final _LogisticRegression_Close = _LogisticRegression_ClosePtr
+      .asFunction<void Function(ffi.Pointer<LogisticRegression>)>();
+
+  CvStatus LogisticRegression_Create(
+    ffi.Pointer<LogisticRegression> rval,
+  ) {
+    return _LogisticRegression_Create(
+      rval,
+    );
+  }
+
+  late final _LogisticRegression_CreatePtr = _lookup<
+          ffi
+          .NativeFunction<CvStatus Function(ffi.Pointer<LogisticRegression>)>>(
+      'LogisticRegression_Create');
+  late final _LogisticRegression_Create = _LogisticRegression_CreatePtr
+      .asFunction<CvStatus Function(ffi.Pointer<LogisticRegression>)>();
+
+  CvStatus LogisticRegression_Predict(
+    LogisticRegression self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _LogisticRegression_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _LogisticRegression_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(LogisticRegression, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('LogisticRegression_Predict');
+  late final _LogisticRegression_Predict =
+      _LogisticRegression_PredictPtr.asFunction<
+          CvStatus Function(LogisticRegression, Mat, ffi.Pointer<Mat>, int,
+              ffi.Pointer<ffi.Float>)>();
 
   void MSER_Close(
     ffi.Pointer<MSER> a,
@@ -11691,6 +12006,65 @@ class CvNative {
   late final _NormWithMats = _NormWithMatsPtr.asFunction<
       CvStatus Function(Mat, Mat, int, ffi.Pointer<ffi.Double>)>();
 
+  void NormalBayesClassifier_Close(
+    ffi.Pointer<NormalBayesClassifier> self,
+  ) {
+    return _NormalBayesClassifier_Close(
+      self,
+    );
+  }
+
+  late final _NormalBayesClassifier_ClosePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<NormalBayesClassifier>)>>(
+      'NormalBayesClassifier_Close');
+  late final _NormalBayesClassifier_Close = _NormalBayesClassifier_ClosePtr
+      .asFunction<void Function(ffi.Pointer<NormalBayesClassifier>)>();
+
+  CvStatus NormalBayesClassifier_Create(
+    ffi.Pointer<NormalBayesClassifier> rval,
+  ) {
+    return _NormalBayesClassifier_Create(
+      rval,
+    );
+  }
+
+  late final _NormalBayesClassifier_CreatePtr = _lookup<
+          ffi.NativeFunction<
+              CvStatus Function(ffi.Pointer<NormalBayesClassifier>)>>(
+      'NormalBayesClassifier_Create');
+  late final _NormalBayesClassifier_Create = _NormalBayesClassifier_CreatePtr
+      .asFunction<CvStatus Function(ffi.Pointer<NormalBayesClassifier>)>();
+
+  CvStatus NormalBayesClassifier_Predict(
+    NormalBayesClassifier self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _NormalBayesClassifier_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _NormalBayesClassifier_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(
+              NormalBayesClassifier,
+              Mat,
+              ffi.Pointer<Mat>,
+              ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('NormalBayesClassifier_Predict');
+  late final _NormalBayesClassifier_Predict =
+      _NormalBayesClassifier_PredictPtr.asFunction<
+          CvStatus Function(NormalBayesClassifier, Mat, ffi.Pointer<Mat>, int,
+              ffi.Pointer<ffi.Float>)>();
+
   void ORB_Close(
     ffi.Pointer<ORB> o,
   ) {
@@ -12313,6 +12687,58 @@ class CvNative {
   late final _RNG_UniformDouble = _RNG_UniformDoublePtr.asFunction<
       CvStatus Function(RNG, double, double, ffi.Pointer<ffi.Double>)>();
 
+  void RTrees_Close(
+    ffi.Pointer<RTrees> self,
+  ) {
+    return _RTrees_Close(
+      self,
+    );
+  }
+
+  late final _RTrees_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<RTrees>)>>(
+          'RTrees_Close');
+  late final _RTrees_Close =
+      _RTrees_ClosePtr.asFunction<void Function(ffi.Pointer<RTrees>)>();
+
+  CvStatus RTrees_Create(
+    ffi.Pointer<RTrees> rval,
+  ) {
+    return _RTrees_Create(
+      rval,
+    );
+  }
+
+  late final _RTrees_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<RTrees>)>>(
+          'RTrees_Create');
+  late final _RTrees_Create =
+      _RTrees_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<RTrees>)>();
+
+  CvStatus RTrees_Predict(
+    RTrees self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _RTrees_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _RTrees_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(RTrees, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('RTrees_Predict');
+  late final _RTrees_Predict = _RTrees_PredictPtr.asFunction<
+      CvStatus Function(
+          RTrees, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
   CvStatus RandN(
     Mat mat,
     Scalar mean,
@@ -12681,6 +13107,110 @@ class CvNative {
       'SVD_Compute');
   late final _SVD_Compute =
       _SVD_ComputePtr.asFunction<CvStatus Function(Mat, Mat, Mat, Mat, int)>();
+
+  void SVMSGD_Close(
+    ffi.Pointer<SVMSGD> self,
+  ) {
+    return _SVMSGD_Close(
+      self,
+    );
+  }
+
+  late final _SVMSGD_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<SVMSGD>)>>(
+          'SVMSGD_Close');
+  late final _SVMSGD_Close =
+      _SVMSGD_ClosePtr.asFunction<void Function(ffi.Pointer<SVMSGD>)>();
+
+  CvStatus SVMSGD_Create(
+    ffi.Pointer<SVMSGD> rval,
+  ) {
+    return _SVMSGD_Create(
+      rval,
+    );
+  }
+
+  late final _SVMSGD_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<SVMSGD>)>>(
+          'SVMSGD_Create');
+  late final _SVMSGD_Create =
+      _SVMSGD_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<SVMSGD>)>();
+
+  CvStatus SVMSGD_Predict(
+    SVMSGD self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _SVMSGD_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _SVMSGD_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(SVMSGD, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('SVMSGD_Predict');
+  late final _SVMSGD_Predict = _SVMSGD_PredictPtr.asFunction<
+      CvStatus Function(
+          SVMSGD, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
+  void SVM_Close(
+    ffi.Pointer<SVM> self,
+  ) {
+    return _SVM_Close(
+      self,
+    );
+  }
+
+  late final _SVM_ClosePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<SVM>)>>(
+          'SVM_Close');
+  late final _SVM_Close =
+      _SVM_ClosePtr.asFunction<void Function(ffi.Pointer<SVM>)>();
+
+  CvStatus SVM_Create(
+    ffi.Pointer<SVM> rval,
+  ) {
+    return _SVM_Create(
+      rval,
+    );
+  }
+
+  late final _SVM_CreatePtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(ffi.Pointer<SVM>)>>(
+          'SVM_Create');
+  late final _SVM_Create =
+      _SVM_CreatePtr.asFunction<CvStatus Function(ffi.Pointer<SVM>)>();
+
+  CvStatus SVM_Predict(
+    SVM self,
+    Mat samples,
+    ffi.Pointer<Mat> results,
+    int flags,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _SVM_Predict(
+      self,
+      samples,
+      results,
+      flags,
+      rval,
+    );
+  }
+
+  late final _SVM_PredictPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(SVM, Mat, ffi.Pointer<Mat>, ffi.Int,
+              ffi.Pointer<ffi.Float>)>>('SVM_Predict');
+  late final _SVM_Predict = _SVM_PredictPtr.asFunction<
+      CvStatus Function(
+          SVM, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
   CvStatus Scharr(
     Mat src,
@@ -17346,6 +17876,8 @@ class _SymbolAddresses {
   _SymbolAddresses(this._library);
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<AKAZE>)>>
       get AKAZE_Close => _library._AKAZE_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ANN_MLP>)>>
+      get ANN_MLP_Close => _library._ANN_MLP_ClosePtr;
   ffi.Pointer<
           ffi
           .NativeFunction<ffi.Void Function(ffi.Pointer<AgastFeatureDetector>)>>
@@ -17380,11 +17912,17 @@ class _SymbolAddresses {
           _library._BackgroundSubtractorMOG2_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<BlockMeanHash>)>>
       get BlockMeanHash_Close => _library._BlockMeanHash_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Boost>)>>
+      get Boost_Close => _library._Boost_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<CLAHE>)>>
       get CLAHE_Close => _library._CLAHE_ClosePtr;
   ffi.Pointer<
           ffi.NativeFunction<ffi.Void Function(ffi.Pointer<CascadeClassifier>)>>
       get CascadeClassifier_Close => _library._CascadeClassifier_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<DTrees>)>>
+      get DTrees_Close => _library._DTrees_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<EM>)>>
+      get EM_Close => _library._EM_ClosePtr;
   ffi.Pointer<
           ffi
           .NativeFunction<ffi.Void Function(ffi.Pointer<FastFeatureDetector>)>>
@@ -17398,10 +17936,16 @@ class _SymbolAddresses {
       get HOGDescriptor_Close => _library._HOGDescriptor_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<KAZE>)>>
       get KAZE_Close => _library._KAZE_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<KNearest>)>>
+      get KNearest_Close => _library._KNearest_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<KalmanFilter>)>>
       get KalmanFilter_Close => _library._KalmanFilter_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Layer>)>>
       get Layer_Close => _library._Layer_ClosePtr;
+  ffi.Pointer<
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<LogisticRegression>)>>
+      get LogisticRegression_Close => _library._LogisticRegression_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<MSER>)>>
       get MSER_Close => _library._MSER_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Mat>)>>
@@ -17412,15 +17956,26 @@ class _SymbolAddresses {
       get MergeMertens_Close => _library._MergeMertens_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<Net>)>>
       get Net_Close => _library._Net_ClosePtr;
+  ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<NormalBayesClassifier>)>>
+      get NormalBayesClassifier_Close =>
+          _library._NormalBayesClassifier_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ORB>)>>
       get ORB_Close => _library._ORB_ClosePtr;
   ffi.Pointer<
           ffi.NativeFunction<ffi.Void Function(ffi.Pointer<QRCodeDetector>)>>
       get QRCodeDetector_Close => _library._QRCodeDetector_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<RTrees>)>>
+      get RTrees_Close => _library._RTrees_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<RNG>)>>
       get Rng_Close => _library._Rng_ClosePtr;
   ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<SIFT>)>>
       get SIFT_Close => _library._SIFT_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<SVMSGD>)>>
+      get SVMSGD_Close => _library._SVMSGD_ClosePtr;
+  ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<SVM>)>>
+      get SVM_Close => _library._SVM_ClosePtr;
   ffi.Pointer<
           ffi
           .NativeFunction<ffi.Void Function(ffi.Pointer<SimpleBlobDetector>)>>
@@ -17482,6 +18037,12 @@ final class AKAZE extends ffi.Struct {
 }
 
 typedef AKAZEPtr = ffi.Pointer<AKAZE>;
+
+final class ANN_MLP extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef ANN_MLPPtr = ffi.Pointer<ANN_MLP>;
 
 final class AgastFeatureDetector extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ptr;
@@ -17552,6 +18113,12 @@ final class BlockMeanHash extends ffi.Struct {
 
 typedef BlockMeanHashPtr = ffi.Pointer<BlockMeanHash>;
 
+final class Boost extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef BoostPtr = ffi.Pointer<Boost>;
+
 final class CLAHE extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ptr;
 }
@@ -17594,6 +18161,17 @@ final class DMatch extends ffi.Struct {
   external double distance;
 }
 
+final class DTrees extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef DTreesPtr = ffi.Pointer<DTrees>;
+
+final class EM extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef EMPtr = ffi.Pointer<EM>;
 typedef ErrorCallback = ffi.Pointer<ffi.NativeFunction<ErrorCallbackFunction>>;
 typedef ErrorCallbackFunction = ffi.Void Function(
     ffi.Int status,
@@ -17646,6 +18224,12 @@ final class KAZE extends ffi.Struct {
 
 typedef KAZEPtr = ffi.Pointer<KAZE>;
 
+final class KNearest extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef KNearestPtr = ffi.Pointer<KNearest>;
+
 final class KalmanFilter extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ptr;
 }
@@ -17680,6 +18264,12 @@ final class Layer extends ffi.Struct {
 }
 
 typedef LayerPtr = ffi.Pointer<Layer>;
+
+final class LogisticRegression extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef LogisticRegressionPtr = ffi.Pointer<LogisticRegression>;
 
 final class MSER extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ptr;
@@ -17783,6 +18373,13 @@ final class NO_USE_AKAZEPtr extends ffi.Struct {
 /// \
 /// Dart ffigen will not generate typedefs if not referred                                                  \
 /// so here we confirm they are included                                                                    \
+final class NO_USE_ANN_MLPPtr extends ffi.Struct {
+  external ffi.Pointer<ANN_MLPPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
 final class NO_USE_AgastFeatureDetectorPtr extends ffi.Struct {
   external ffi.Pointer<AgastFeatureDetectorPtr> p;
 }
@@ -17860,6 +18457,13 @@ final class NO_USE_BlockMeanHashPtr extends ffi.Struct {
 /// \
 /// Dart ffigen will not generate typedefs if not referred                                                  \
 /// so here we confirm they are included                                                                    \
+final class NO_USE_BoostPtr extends ffi.Struct {
+  external ffi.Pointer<BoostPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
 final class NO_USE_CLAHEPtr extends ffi.Struct {
   external ffi.Pointer<CLAHEPtr> p;
 }
@@ -17869,6 +18473,20 @@ final class NO_USE_CLAHEPtr extends ffi.Struct {
 /// so here we confirm they are included                                                                    \
 final class NO_USE_CascadeClassifierPtr extends ffi.Struct {
   external ffi.Pointer<CascadeClassifierPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
+final class NO_USE_DTreesPtr extends ffi.Struct {
+  external ffi.Pointer<DTreesPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
+final class NO_USE_EMPtr extends ffi.Struct {
+  external ffi.Pointer<EMPtr> p;
 }
 
 /// \
@@ -17916,6 +18534,13 @@ final class NO_USE_KAZEPtr extends ffi.Struct {
 /// \
 /// Dart ffigen will not generate typedefs if not referred                                                  \
 /// so here we confirm they are included                                                                    \
+final class NO_USE_KNearestPtr extends ffi.Struct {
+  external ffi.Pointer<KNearestPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
 final class NO_USE_KalmanFilterPtr extends ffi.Struct {
   external ffi.Pointer<KalmanFilterPtr> p;
 }
@@ -17925,6 +18550,13 @@ final class NO_USE_KalmanFilterPtr extends ffi.Struct {
 /// so here we confirm they are included                                                                    \
 final class NO_USE_LayerPtr extends ffi.Struct {
   external ffi.Pointer<LayerPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
+final class NO_USE_LogisticRegressionPtr extends ffi.Struct {
+  external ffi.Pointer<LogisticRegressionPtr> p;
 }
 
 /// \
@@ -17958,6 +18590,13 @@ final class NO_USE_NetPtr extends ffi.Struct {
 /// \
 /// Dart ffigen will not generate typedefs if not referred                                                  \
 /// so here we confirm they are included                                                                    \
+final class NO_USE_NormalBayesClassifierPtr extends ffi.Struct {
+  external ffi.Pointer<NormalBayesClassifierPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
 final class NO_USE_ORBPtr extends ffi.Struct {
   external ffi.Pointer<ORBPtr> p;
 }
@@ -17986,8 +18625,29 @@ final class NO_USE_RNGPtr extends ffi.Struct {
 /// \
 /// Dart ffigen will not generate typedefs if not referred                                                  \
 /// so here we confirm they are included                                                                    \
+final class NO_USE_RTreesPtr extends ffi.Struct {
+  external ffi.Pointer<RTreesPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
 final class NO_USE_SIFTPtr extends ffi.Struct {
   external ffi.Pointer<SIFTPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
+final class NO_USE_SVMPtr extends ffi.Struct {
+  external ffi.Pointer<SVMPtr> p;
+}
+
+/// \
+/// Dart ffigen will not generate typedefs if not referred                                                  \
+/// so here we confirm they are included                                                                    \
+final class NO_USE_SVMSGDPtr extends ffi.Struct {
+  external ffi.Pointer<SVMSGDPtr> p;
 }
 
 /// \
@@ -18185,6 +18845,12 @@ final class Net extends ffi.Struct {
 
 typedef NetPtr = ffi.Pointer<Net>;
 
+final class NormalBayesClassifier extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef NormalBayesClassifierPtr = ffi.Pointer<NormalBayesClassifier>;
+
 final class ORB extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ptr;
 }
@@ -18235,6 +18901,12 @@ final class RNG extends ffi.Struct {
 }
 
 typedef RNGPtr = ffi.Pointer<RNG>;
+
+final class RTrees extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef RTreesPtr = ffi.Pointer<RTrees>;
 
 final class Rect extends ffi.Struct {
   @ffi.Int()
@@ -18290,6 +18962,18 @@ const int STITCHING_OK = 0;
 const int STITCHING_PANORAMA = 0;
 
 const int STITCHING_SCANS = 1;
+
+final class SVM extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef SVMPtr = ffi.Pointer<SVM>;
+
+final class SVMSGD extends ffi.Struct {
+  external ffi.Pointer<ffi.Void> ptr;
+}
+
+typedef SVMSGDPtr = ffi.Pointer<SVMSGD>;
 
 final class Scalar extends ffi.Struct {
   @ffi.Double()

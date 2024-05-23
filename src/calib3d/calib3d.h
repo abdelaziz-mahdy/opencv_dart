@@ -16,6 +16,7 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
 #include "core/core.h"
 
 // Calib

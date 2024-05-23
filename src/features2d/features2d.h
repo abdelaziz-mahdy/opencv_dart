@@ -13,7 +13,7 @@
 #include <opencv2/opencv.hpp>
 extern "C" {
 #endif
-
+#include <stddef.h>
 #include "core/core.h"
 
 #ifdef __cplusplus
