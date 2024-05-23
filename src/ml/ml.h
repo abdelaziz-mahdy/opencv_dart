@@ -66,6 +66,17 @@ void ANN_MLP_Close(ANN_MLP* self);
 void LogisticRegression_Close(LogisticRegression* self);
 void SVMSGD_Close(SVMSGD* self);
 
+CvStatus NormalBayesClassifier_Train(NormalBayesClassifier self, Mat samples, int layout, Mat responses);
+CvStatus KNearest_Train(KNearest self, Mat samples, int layout, Mat responses);
+CvStatus SVM_Train(SVM self, Mat samples, int layout, Mat responses);
+CvStatus EM_Train(EM self, Mat samples, int layout, Mat responses);
+CvStatus DTrees_Train(DTrees self, Mat samples, int layout, Mat responses);
+CvStatus RTrees_Train(RTrees self, Mat samples, int layout, Mat responses);
+CvStatus Boost_Train(Boost self, Mat samples, int layout, Mat responses);
+CvStatus ANN_MLP_Train(ANN_MLP self, Mat samples, int layout, Mat responses);
+CvStatus LogisticRegression_Train(LogisticRegression self, Mat samples, int layout, Mat responses);
+CvStatus SVMSGD_Train(SVMSGD self, Mat samples, int layout, Mat responses);
+
 CvStatus NormalBayesClassifier_Predict(NormalBayesClassifier self, Mat samples, CVD_OUT Mat* results, int flags, float* rval);
 CvStatus KNearest_Predict(KNearest self, Mat samples, CVD_OUT Mat* results, int k, float* rval);
 CvStatus SVM_Predict(SVM self, Mat samples, CVD_OUT Mat* results, int flags, float* rval);
@@ -76,6 +87,8 @@ CvStatus Boost_Predict(Boost self, Mat samples, CVD_OUT Mat* results, int flags,
 CvStatus ANN_MLP_Predict(ANN_MLP self, Mat samples, CVD_OUT Mat* results, int flags, float* rval);
 CvStatus LogisticRegression_Predict(LogisticRegression self, Mat samples, CVD_OUT Mat* results, int flags, float* rval);
 CvStatus SVMSGD_Predict(SVMSGD self, Mat samples, CVD_OUT Mat* results, int flags, float* rval);
+
+CvStatus KNearest_FindNearest(KNearest self, Mat samples, int k, CVD_OUT Mat* results, CVD_OUT Mat* neighborResponses, CVD_OUT Mat* dist, float* rval);
 
 #ifdef __cplusplus
 }

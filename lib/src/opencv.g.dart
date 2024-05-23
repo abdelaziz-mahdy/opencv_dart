@@ -150,6 +150,26 @@ class CvNative {
       CvStatus Function(
           ANN_MLP, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
+  CvStatus ANN_MLP_Train(
+    ANN_MLP self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _ANN_MLP_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _ANN_MLP_TrainPtr = _lookup<
+          ffi.NativeFunction<CvStatus Function(ANN_MLP, Mat, ffi.Int, Mat)>>(
+      'ANN_MLP_Train');
+  late final _ANN_MLP_Train =
+      _ANN_MLP_TrainPtr.asFunction<CvStatus Function(ANN_MLP, Mat, int, Mat)>();
+
   CvStatus AdaptiveThreshold(
     Mat src,
     Mat dst,
@@ -2217,6 +2237,26 @@ class CvNative {
       CvStatus Function(
           Boost, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
+  CvStatus Boost_Train(
+    Boost self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _Boost_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _Boost_TrainPtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(Boost, Mat, ffi.Int, Mat)>>(
+          'Boost_Train');
+  late final _Boost_Train =
+      _Boost_TrainPtr.asFunction<CvStatus Function(Boost, Mat, int, Mat)>();
+
   CvStatus BoundingRect(
     VecPoint pts,
     ffi.Pointer<Rect> rval,
@@ -3072,6 +3112,26 @@ class CvNative {
       CvStatus Function(
           DTrees, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
+  CvStatus DTrees_Train(
+    DTrees self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _DTrees_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _DTrees_TrainPtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(DTrees, Mat, ffi.Int, Mat)>>(
+          'DTrees_Train');
+  late final _DTrees_Train =
+      _DTrees_TrainPtr.asFunction<CvStatus Function(DTrees, Mat, int, Mat)>();
+
   CvStatus DetailEnhance(
     Mat src,
     Mat dst,
@@ -3344,6 +3404,26 @@ class CvNative {
   late final _EM_Predict = _EM_PredictPtr.asFunction<
       CvStatus Function(
           EM, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
+  CvStatus EM_Train(
+    EM self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _EM_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _EM_TrainPtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(EM, Mat, ffi.Int, Mat)>>(
+          'EM_Train');
+  late final _EM_Train =
+      _EM_TrainPtr.asFunction<CvStatus Function(EM, Mat, int, Mat)>();
 
   CvStatus EdgePreservingFilter(
     Mat src,
@@ -5427,6 +5507,40 @@ class CvNative {
   late final _KNearest_Create = _KNearest_CreatePtr.asFunction<
       CvStatus Function(ffi.Pointer<KNearest>)>();
 
+  CvStatus KNearest_FindNearest(
+    KNearest self,
+    Mat samples,
+    int k,
+    ffi.Pointer<Mat> results,
+    ffi.Pointer<Mat> neighborResponses,
+    ffi.Pointer<Mat> dist,
+    ffi.Pointer<ffi.Float> rval,
+  ) {
+    return _KNearest_FindNearest(
+      self,
+      samples,
+      k,
+      results,
+      neighborResponses,
+      dist,
+      rval,
+    );
+  }
+
+  late final _KNearest_FindNearestPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(
+              KNearest,
+              Mat,
+              ffi.Int,
+              ffi.Pointer<Mat>,
+              ffi.Pointer<Mat>,
+              ffi.Pointer<Mat>,
+              ffi.Pointer<ffi.Float>)>>('KNearest_FindNearest');
+  late final _KNearest_FindNearest = _KNearest_FindNearestPtr.asFunction<
+      CvStatus Function(KNearest, Mat, int, ffi.Pointer<Mat>, ffi.Pointer<Mat>,
+          ffi.Pointer<Mat>, ffi.Pointer<ffi.Float>)>();
+
   CvStatus KNearest_Predict(
     KNearest self,
     Mat samples,
@@ -5450,6 +5564,26 @@ class CvNative {
   late final _KNearest_Predict = _KNearest_PredictPtr.asFunction<
       CvStatus Function(
           KNearest, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
+  CvStatus KNearest_Train(
+    KNearest self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _KNearest_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _KNearest_TrainPtr = _lookup<
+          ffi.NativeFunction<CvStatus Function(KNearest, Mat, ffi.Int, Mat)>>(
+      'KNearest_Train');
+  late final _KNearest_Train = _KNearest_TrainPtr.asFunction<
+      CvStatus Function(KNearest, Mat, int, Mat)>();
 
   void KalmanFilter_Close(
     ffi.Pointer<KalmanFilter> self,
@@ -6263,6 +6397,27 @@ class CvNative {
       _LogisticRegression_PredictPtr.asFunction<
           CvStatus Function(LogisticRegression, Mat, ffi.Pointer<Mat>, int,
               ffi.Pointer<ffi.Float>)>();
+
+  CvStatus LogisticRegression_Train(
+    LogisticRegression self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _LogisticRegression_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _LogisticRegression_TrainPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(LogisticRegression, Mat, ffi.Int,
+              Mat)>>('LogisticRegression_Train');
+  late final _LogisticRegression_Train = _LogisticRegression_TrainPtr
+      .asFunction<CvStatus Function(LogisticRegression, Mat, int, Mat)>();
 
   void MSER_Close(
     ffi.Pointer<MSER> a,
@@ -12065,6 +12220,27 @@ class CvNative {
           CvStatus Function(NormalBayesClassifier, Mat, ffi.Pointer<Mat>, int,
               ffi.Pointer<ffi.Float>)>();
 
+  CvStatus NormalBayesClassifier_Train(
+    NormalBayesClassifier self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _NormalBayesClassifier_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _NormalBayesClassifier_TrainPtr = _lookup<
+      ffi.NativeFunction<
+          CvStatus Function(NormalBayesClassifier, Mat, ffi.Int,
+              Mat)>>('NormalBayesClassifier_Train');
+  late final _NormalBayesClassifier_Train = _NormalBayesClassifier_TrainPtr
+      .asFunction<CvStatus Function(NormalBayesClassifier, Mat, int, Mat)>();
+
   void ORB_Close(
     ffi.Pointer<ORB> o,
   ) {
@@ -12739,6 +12915,26 @@ class CvNative {
       CvStatus Function(
           RTrees, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
+  CvStatus RTrees_Train(
+    RTrees self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _RTrees_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _RTrees_TrainPtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(RTrees, Mat, ffi.Int, Mat)>>(
+          'RTrees_Train');
+  late final _RTrees_Train =
+      _RTrees_TrainPtr.asFunction<CvStatus Function(RTrees, Mat, int, Mat)>();
+
   CvStatus RandN(
     Mat mat,
     Scalar mean,
@@ -13160,6 +13356,26 @@ class CvNative {
       CvStatus Function(
           SVMSGD, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
 
+  CvStatus SVMSGD_Train(
+    SVMSGD self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _SVMSGD_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _SVMSGD_TrainPtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(SVMSGD, Mat, ffi.Int, Mat)>>(
+          'SVMSGD_Train');
+  late final _SVMSGD_Train =
+      _SVMSGD_TrainPtr.asFunction<CvStatus Function(SVMSGD, Mat, int, Mat)>();
+
   void SVM_Close(
     ffi.Pointer<SVM> self,
   ) {
@@ -13211,6 +13427,26 @@ class CvNative {
   late final _SVM_Predict = _SVM_PredictPtr.asFunction<
       CvStatus Function(
           SVM, Mat, ffi.Pointer<Mat>, int, ffi.Pointer<ffi.Float>)>();
+
+  CvStatus SVM_Train(
+    SVM self,
+    Mat samples,
+    int layout,
+    Mat responses,
+  ) {
+    return _SVM_Train(
+      self,
+      samples,
+      layout,
+      responses,
+    );
+  }
+
+  late final _SVM_TrainPtr =
+      _lookup<ffi.NativeFunction<CvStatus Function(SVM, Mat, ffi.Int, Mat)>>(
+          'SVM_Train');
+  late final _SVM_Train =
+      _SVM_TrainPtr.asFunction<CvStatus Function(SVM, Mat, int, Mat)>();
 
   CvStatus Scharr(
     Mat src,
