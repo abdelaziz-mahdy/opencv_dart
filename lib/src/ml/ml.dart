@@ -1,5 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
-library cv_ml;
+
 
 import 'dart:ffi' as ffi;
 import 'package:ffi/ffi.dart';
@@ -31,7 +31,6 @@ class KNearest extends CvStruct<cvg.KNearest> {
     neighborResponses ??= Mat.empty();
     dists ??= Mat.empty();
 
-    // Allocate pointers for the results, neighborResponses, dists, and rval
     final resultsPtr = results.ptr.cast<cvg.Mat>();
     final neighborResponsesPtr = neighborResponses.ptr.cast<cvg.Mat>();
     final distsPtr = dists.ptr.cast<cvg.Mat>();
@@ -293,6 +292,68 @@ class NormalBayesClassifier extends CvStruct<cvg.NormalBayesClassifier> {
   cvg.NormalBayesClassifier get ref => ptr.ref;
 }
 
-void initializeML() {
-  CFFI.initialize();
+class EM extends CvStruct<cvg.EM> {
+  EM._(cvg.EMPtr ptr) : super.fromPointer(ptr) {
+    finalizer.attach(this, ptr.cast());
+  }
+
+  factory EM.fromNative(cvg.EMPtr ptr) => EM._(ptr);
+
+  factory EM.empty() {
+    final p = calloc<cvg.EM>();
+    CFFI.EM_Create(p);
+    return EM._(p);
+  }
+
+  void train(Mat samples, int layout, Mat responses) {
+    cvRun(() => CFFI.EM_Train(ref, samples.ref, layout, responses.ref));
+  }
+
+  Mat predict(Mat samples, {Mat? results, int flags = 0}) {
+    results ??= Mat.empty();
+    cvRun(() => CFFI.EM_Predict(ref, samples.ref, results!.ref, flags));
+    return results;
+  }
+
+  static final finalizer = OcvFinalizer<cvg.EMPtr>(CFFI.addresses.EM_Close);
+
+  @override
+  List<int> get props => [ptr.address];
+
+  @override
+  cvg.EM get ref => ptr.ref;
 }
+
+class SVMSGD extends CvStruct<cvg.SVMSGD> {
+  SVMSGD._(cvg.SVMSGDPtr ptr) : super.fromPointer(ptr) {
+    finalizer.attach(this, ptr.cast());
+  }
+
+  factory SVMSGD.fromNative(cvg.SVMSGDPtr ptr) => SVMSGD._(ptr);
+
+  factory SVMSGD.empty() {
+    final p = calloc<cvg.SVMSGD>();
+    CFFI.SVMSGD_Create(p);
+    return SVMSGD._(p);
+  }
+
+  void train(Mat samples, int layout, Mat responses) {
+    cvRun(() => CFFI.SVMSGD_Train(ref, samples.ref, layout, responses.ref));
+  }
+
+  Mat predict(Mat samples, {Mat? results, int flags = 0}) {
+    results ??= Mat.empty();
+    cvRun(() => CFFI.SVMSGD_Predict(ref, samples.ref, results!.ref, flags));
+    return results;
+  }
+
+  static final finalizer =
+      OcvFinalizer<cvg.SVMSGDPtr>(CFFI.addresses.SVMSGD_Close);
+
+  @override
+  List<int> get props => [ptr.address];
+
+  @override
+  cvg.SVMSGD get ref => ptr.ref;
+}
+
