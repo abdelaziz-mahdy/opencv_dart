@@ -1,1588 +1,1352 @@
-
 #include "ml.h"
 #include <memory>
 #include <vector>
 
-
-
-CvStatus ParamGrid_New(ParamGrid *rval)
-{
+CvStatus ParamGrid_New(ParamGrid *rval) {
     BEGIN_WRAP
     *rval = ParamGrid();
     END_WRAP
 }
 
-CvStatus ParamGrid_NewWithParams(double _minVal, double _maxVal, double _logStep, ParamGrid *rval)
-{
+CvStatus ParamGrid_NewWithParams(double _minVal, double _maxVal, double _logStep, ParamGrid *rval) {
     BEGIN_WRAP
     *rval = ParamGrid(_minVal, _maxVal, _logStep);
     END_WRAP
 }
 
-CvStatus ParamGrid_Create(double minVal, double maxVal, double logstep, Ptr<ParamGrid> *rval)
-{
+CvStatus ParamGrid_Create(double minVal, double maxVal, double logstep, PtrParamGrid *rval) {
     BEGIN_WRAP
-    *rval = ParamGrid::create(minVal, maxVal, logstep);
+    *rval = cv::ml::ParamGrid::create(minVal, maxVal, logstep);
     END_WRAP
 }
 
-CvStatus TrainData_MissingValue(float *rval)
-{
+CvStatus TrainData_MissingValue(float *rval) {
     BEGIN_WRAP
-    *rval = TrainData::missingValue();
+    *rval = cv::ml::TrainData::missingValue();
     END_WRAP
 }
 
-CvStatus TrainData_Close(TrainData *cs)
-{
+CvStatus TrainData_Close(PtrTrainData *cs) {
     delete cs;
     return CvStatus::OK;
 }
 
-CvStatus TrainData_GetLayout(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetLayout(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getLayout();
+    *rval = cs->get()->getLayout();
     END_WRAP
 }
 
-CvStatus TrainData_GetNTrainSamples(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetNTrainSamples(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getNTrainSamples();
+    *rval = cs->get()->getNTrainSamples();
     END_WRAP
 }
 
-CvStatus TrainData_GetNTestSamples(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetNTestSamples(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getNTestSamples();
+    *rval = cs->get()->getNTestSamples();
     END_WRAP
 }
 
-CvStatus TrainData_GetNSamples(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetNSamples(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getNSamples();
+    *rval = cs->get()->getNSamples();
     END_WRAP
 }
 
-CvStatus TrainData_GetNVars(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetNVars(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getNVars();
+    *rval = cs->get()->getNVars();
     END_WRAP
 }
 
-CvStatus TrainData_GetNAllVars(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetNAllVars(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getNAllVars();
+    *rval = cs->get()->getNAllVars();
     END_WRAP
 }
 
-CvStatus TrainData_GetSample(const TrainData *cs, InputArray varIdx, int sidx, float* buf)
-{
+CvStatus TrainData_GetSample(const PtrTrainData *cs, CVInputArray varIdx, int sidx, float* buf) {
     BEGIN_WRAP
-    cs->getSample(varIdx, sidx, buf);
+    cs->get()->getSample(varIdx, sidx, buf);
     END_WRAP
 }
 
-CvStatus TrainData_GetSamples(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetSamples(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getSamples();
+    *rval = cs->get()->getSamples();
     END_WRAP
 }
 
-CvStatus TrainData_GetMissing(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetMissing(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getMissing();
+    *rval = cs->get()->getMissing();
     END_WRAP
 }
 
-CvStatus TrainData_GetTrainSamples(const TrainData *cs, int layout, bool compressSamples, bool compressVars, Mat *rval)
-{
+CvStatus TrainData_GetTrainSamples(const PtrTrainData *cs, int layout, bool compressSamples, bool compressVars, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainSamples(layout, compressSamples, compressVars);
+    *rval = cs->get()->getTrainSamples(layout, compressSamples, compressVars);
     END_WRAP
 }
 
-CvStatus TrainData_GetTrainResponses(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTrainResponses(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainResponses();
+    *rval = cs->get()->getTrainResponses();
     END_WRAP
 }
 
-CvStatus TrainData_GetTrainNormCatResponses(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTrainNormCatResponses(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainNormCatResponses();
+    *rval = cs->get()->getTrainNormCatResponses();
     END_WRAP
 }
 
-CvStatus TrainData_GetTestResponses(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTestResponses(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTestResponses();
+    *rval = cs->get()->getTestResponses();
     END_WRAP
 }
 
-CvStatus TrainData_GetTestNormCatResponses(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTestNormCatResponses(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTestNormCatResponses();
+    *rval = cs->get()->getTestNormCatResponses();
     END_WRAP
 }
 
-CvStatus TrainData_GetResponses(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetResponses(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getResponses();
+    *rval = cs->get()->getResponses();
     END_WRAP
 }
 
-CvStatus TrainData_GetNormCatResponses(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetNormCatResponses(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getNormCatResponses();
+    *rval = cs->get()->getNormCatResponses();
     END_WRAP
 }
 
-CvStatus TrainData_GetSampleWeights(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetSampleWeights(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getSampleWeights();
+    *rval = cs->get()->getSampleWeights();
     END_WRAP
 }
 
-CvStatus TrainData_GetTrainSampleWeights(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTrainSampleWeights(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainSampleWeights();
+    *rval = cs->get()->getTrainSampleWeights();
     END_WRAP
 }
 
-CvStatus TrainData_GetTestSampleWeights(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTestSampleWeights(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTestSampleWeights();
+    *rval = cs->get()->getTestSampleWeights();
     END_WRAP
 }
 
-CvStatus TrainData_GetVarIdx(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetVarIdx(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getVarIdx();
+    *rval = cs->get()->getVarIdx();
     END_WRAP
 }
 
-CvStatus TrainData_GetVarType(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetVarType(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getVarType();
+    *rval = cs->get()->getVarType();
     END_WRAP
 }
 
-CvStatus TrainData_GetVarSymbolFlags(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetVarSymbolFlags(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getVarSymbolFlags();
+    *rval = cs->get()->getVarSymbolFlags();
     END_WRAP
 }
 
-CvStatus TrainData_GetResponseType(const TrainData *cs, int *rval)
-{
+CvStatus TrainData_GetResponseType(const PtrTrainData *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getResponseType();
+    *rval = cs->get()->getResponseType();
     END_WRAP
 }
 
-CvStatus TrainData_GetTrainSampleIdx(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTrainSampleIdx(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainSampleIdx();
+    *rval = cs->get()->getTrainSampleIdx();
     END_WRAP
 }
 
-CvStatus TrainData_GetTestSampleIdx(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTestSampleIdx(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTestSampleIdx();
+    *rval = cs->get()->getTestSampleIdx();
     END_WRAP
 }
 
-CvStatus TrainData_GetValues(const TrainData *cs, int vi, InputArray sidx, float* values)
-{
+CvStatus TrainData_GetValues(const PtrTrainData *cs, int vi, CVInputArray sidx, float* values) {
     BEGIN_WRAP
-    cs->getValues(vi, sidx, values);
+    cs->get()->getValues(vi, sidx, values);
     END_WRAP
 }
 
-CvStatus TrainData_GetNormCatValues(const TrainData *cs, int vi, InputArray sidx, int* values)
-{
+CvStatus TrainData_GetNormCatValues(const PtrTrainData *cs, int vi, CVInputArray sidx, int* values) {
     BEGIN_WRAP
-    cs->getNormCatValues(vi, sidx, values);
+    cs->get()->getNormCatValues(vi, sidx, values);
     END_WRAP
 }
 
-CvStatus TrainData_GetDefaultSubstValues(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetDefaultSubstValues(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getDefaultSubstValues();
+    *rval = cs->get()->getDefaultSubstValues();
     END_WRAP
 }
 
-CvStatus TrainData_GetCatCount(const TrainData *cs, int vi, int *rval)
-{
+CvStatus TrainData_GetCatCount(const PtrTrainData *cs, int vi, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getCatCount(vi);
+    *rval = cs->get()->getCatCount(vi);
     END_WRAP
 }
 
-CvStatus TrainData_GetClassLabels(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetClassLabels(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getClassLabels();
+    *rval = cs->get()->getClassLabels();
     END_WRAP
 }
 
-CvStatus TrainData_GetCatOfs(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetCatOfs(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getCatOfs();
+    *rval = cs->get()->getCatOfs();
     END_WRAP
 }
 
-CvStatus TrainData_GetCatMap(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetCatMap(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getCatMap();
+    *rval = cs->get()->getCatMap();
     END_WRAP
 }
 
-CvStatus TrainData_SetTrainTestSplit(TrainData *cs, int count, bool shuffle)
-{
+CvStatus TrainData_SetTrainTestSplit(PtrTrainData *cs, int count, bool shuffle) {
     BEGIN_WRAP
-    cs->setTrainTestSplit(count, shuffle);
+    cs->get()->setTrainTestSplit(count, shuffle);
     END_WRAP
 }
 
-CvStatus TrainData_SetTrainTestSplitRatio(TrainData *cs, double ratio, bool shuffle)
-{
+CvStatus TrainData_SetTrainTestSplitRatio(PtrTrainData *cs, double ratio, bool shuffle) {
     BEGIN_WRAP
-    cs->setTrainTestSplitRatio(ratio, shuffle);
+    cs->get()->setTrainTestSplitRatio(ratio, shuffle);
     END_WRAP
 }
 
-CvStatus TrainData_ShuffleTrainTest(TrainData *cs)
-{
+CvStatus TrainData_ShuffleTrainTest(PtrTrainData *cs) {
     BEGIN_WRAP
-    cs->shuffleTrainTest();
+    cs->get()->shuffleTrainTest();
     END_WRAP
 }
 
-CvStatus TrainData_GetTestSamples(const TrainData *cs, Mat *rval)
-{
+CvStatus TrainData_GetTestSamples(const PtrTrainData *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getTestSamples();
+    *rval = cs->get()->getTestSamples();
     END_WRAP
 }
 
-CvStatus TrainData_GetNames(const TrainData *cs, std::vector<String>& names)
-{
+CvStatus TrainData_GetNames(const PtrTrainData *cs, std::vector<CVString>& names) {
     BEGIN_WRAP
-    cs->getNames(names);
+    cs->get()->getNames(names);
     END_WRAP
 }
 
-CvStatus TrainData_GetSubVector(const Mat& vec, const Mat& idx, Mat *rval)
-{
+CvStatus TrainData_GetSubVector(const cv::Mat& vec, const cv::Mat& idx, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = TrainData::getSubVector(vec, idx);
+    *rval = cv::ml::TrainData::getSubVector(vec, idx);
     END_WRAP
 }
 
-CvStatus TrainData_GetSubMatrix(const Mat& matrix, const Mat& idx, int layout, Mat *rval)
-{
+CvStatus TrainData_GetSubMatrix(const cv::Mat& matrix, const cv::Mat& idx, int layout, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = TrainData::getSubMatrix(matrix, idx, layout);
+    *rval = cv::ml::TrainData::getSubMatrix(matrix, idx, layout);
     END_WRAP
 }
 
-CvStatus TrainData_LoadFromCSV(const String& filename, int headerLineCount, int responseStartIdx, int responseEndIdx, const String& varTypeSpec, char delimiter, char missch, Ptr<TrainData> *rval)
-{
+CvStatus TrainData_LoadFromCSV(const CVString& filename, int headerLineCount, int responseStartIdx, int responseEndIdx, const CVString& varTypeSpec, char delimiter, char missch, PtrTrainData *rval) {
     BEGIN_WRAP
-    *rval = TrainData::loadFromCSV(filename, headerLineCount, responseStartIdx, responseEndIdx, varTypeSpec, delimiter, missch);
+    *rval = cv::ml::TrainData::loadFromCSV(filename, headerLineCount, responseStartIdx, responseEndIdx, varTypeSpec, delimiter, missch);
     END_WRAP
 }
 
-CvStatus TrainData_Create(InputArray samples, int layout, InputArray responses,
-
- InputArray varIdx, InputArray sampleIdx, InputArray sampleWeights, InputArray varType, Ptr<TrainData> *rval)
-{
+CvStatus TrainData_Create(CVInputArray samples, int layout, CVInputArray responses, CVInputArray varIdx, CVInputArray sampleIdx, CVInputArray sampleWeights, CVInputArray varType, PtrTrainData *rval) {
     BEGIN_WRAP
-    *rval = TrainData::create(samples, layout, responses, varIdx, sampleIdx, sampleWeights, varType);
+    *rval = cv::ml::TrainData::create(samples, layout, responses, varIdx, sampleIdx, sampleWeights, varType);
     END_WRAP
 }
 
-CvStatus StatModel_GetVarCount(const StatModel *cs, int *rval)
-{
+CvStatus StatModel_GetVarCount(const PtrStatModel *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getVarCount();
+    *rval = cs->get()->getVarCount();
     END_WRAP
 }
 
-CvStatus StatModel_Empty(const StatModel *cs, bool *rval)
-{
+CvStatus StatModel_Empty(const PtrStatModel *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->empty();
+    *rval = cs->get()->empty();
     END_WRAP
 }
 
-CvStatus StatModel_IsTrained(const StatModel *cs, bool *rval)
-{
+CvStatus StatModel_IsTrained(const PtrStatModel *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->isTrained();
+    *rval = cs->get()->isTrained();
     END_WRAP
 }
 
-CvStatus StatModel_IsClassifier(const StatModel *cs, bool *rval)
-{
+CvStatus StatModel_IsClassifier(const PtrStatModel *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->isClassifier();
+    *rval = cs->get()->isClassifier();
     END_WRAP
 }
 
-CvStatus StatModel_Train(StatModel *cs, const Ptr<TrainData>& trainData, int flags, bool *rval)
-{
+CvStatus StatModel_Train(PtrStatModel *cs, const PtrTrainData& trainData, int flags, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->train(trainData, flags);
+    *rval = cs->get()->train(trainData, flags);
     END_WRAP
 }
 
-CvStatus StatModel_TrainWithData(StatModel *cs, InputArray samples, int layout, InputArray responses, bool *rval)
-{
+CvStatus StatModel_TrainWithData(PtrStatModel *cs, CVInputArray samples, int layout, CVInputArray responses, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->train(samples, layout, responses);
+    *rval = cs->get()->train(samples, layout, responses);
     END_WRAP
 }
 
-CvStatus StatModel_CalcError(const StatModel *cs, const Ptr<TrainData>& data, bool test, OutputArray resp, float *rval)
-{
+CvStatus StatModel_CalcError(const PtrStatModel *cs, const PtrTrainData& data, bool test, CVOutputArray resp, float *rval) {
     BEGIN_WRAP
-    *rval = cs->calcError(data, test, resp);
+    *rval = cs->get()->calcError(data, test, resp);
     END_WRAP
 }
 
-CvStatus StatModel_Predict(const StatModel *cs, InputArray samples, OutputArray results, int flags, float *rval)
-{
+CvStatus StatModel_Predict(const PtrStatModel *cs, CVInputArray samples, CVOutputArray results, int flags, float *rval) {
     BEGIN_WRAP
-    *rval = cs->predict(samples, results, flags);
+    *rval = cs->get()->predict(samples, results, flags);
     END_WRAP
 }
 
-CvStatus NormalBayesClassifier_PredictProb(const NormalBayesClassifier *cs, InputArray inputs, OutputArray outputs, OutputArray outputProbs, int flags, float *rval)
-{
+CvStatus NormalBayesClassifier_PredictProb(const PtrNormalBayesClassifier *cs, CVInputArray inputs, CVOutputArray outputs, CVOutputArray outputProbs, int flags, float *rval) {
     BEGIN_WRAP
-    *rval = cs->predictProb(inputs, outputs, outputProbs, flags);
+    *rval = cs->get()->predictProb(inputs, outputs, outputProbs, flags);
     END_WRAP
 }
 
-CvStatus NormalBayesClassifier_Create(Ptr<NormalBayesClassifier> *rval)
-{
+CvStatus NormalBayesClassifier_Create(PtrNormalBayesClassifier *rval) {
     BEGIN_WRAP
-    *rval = NormalBayesClassifier::create();
+    *rval = cv::ml::NormalBayesClassifier::create();
     END_WRAP
 }
 
-CvStatus NormalBayesClassifier_Load(const String& filepath, const String& nodeName, Ptr<NormalBayesClassifier> *rval)
-{
+CvStatus NormalBayesClassifier_Load(const CVString& filepath, const CVString& nodeName, PtrNormalBayesClassifier *rval) {
     BEGIN_WRAP
-    *rval = NormalBayesClassifier::load(filepath, nodeName);
+    *rval = cv::ml::NormalBayesClassifier::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus KNearest_GetDefaultK(const KNearest *cs, int *rval)
-{
+CvStatus KNearest_GetDefaultK(const PtrKNearest *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getDefaultK();
+    *rval = cs->get()->getDefaultK();
     END_WRAP
 }
 
-CvStatus KNearest_SetDefaultK(KNearest *cs, int val)
-{
+CvStatus KNearest_SetDefaultK(PtrKNearest *cs, int val) {
     BEGIN_WRAP
-    cs->setDefaultK(val);
+    cs->get()->setDefaultK(val);
     END_WRAP
 }
 
-CvStatus KNearest_GetIsClassifier(const KNearest *cs, bool *rval)
-{
+CvStatus KNearest_GetIsClassifier(const PtrKNearest *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->getIsClassifier();
+    *rval = cs->get()->getIsClassifier();
     END_WRAP
 }
 
-CvStatus KNearest_SetIsClassifier(KNearest *cs, bool val)
-{
+CvStatus KNearest_SetIsClassifier(PtrKNearest *cs, bool val) {
     BEGIN_WRAP
-    cs->setIsClassifier(val);
+    cs->get()->setIsClassifier(val);
     END_WRAP
 }
 
-CvStatus KNearest_GetEmax(const KNearest *cs, int *rval)
-{
+CvStatus KNearest_GetEmax(const PtrKNearest *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getEmax();
+    *rval = cs->get()->getEmax();
     END_WRAP
 }
 
-CvStatus KNearest_SetEmax(KNearest *cs, int val)
-{
+CvStatus KNearest_SetEmax(PtrKNearest *cs, int val) {
     BEGIN_WRAP
-    cs->setEmax(val);
+    cs->get()->setEmax(val);
     END_WRAP
 }
 
-CvStatus KNearest_GetAlgorithmType(const KNearest *cs, int *rval)
-{
+CvStatus KNearest_GetAlgorithmType(const PtrKNearest *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getAlgorithmType();
+    *rval = cs->get()->getAlgorithmType();
     END_WRAP
 }
 
-CvStatus KNearest_SetAlgorithmType(KNearest *cs, int val)
-{
+CvStatus KNearest_SetAlgorithmType(PtrKNearest *cs, int val) {
     BEGIN_WRAP
-    cs->setAlgorithmType(val);
+    cs->get()->setAlgorithmType(val);
     END_WRAP
 }
 
-CvStatus KNearest_FindNearest(const KNearest *cs, InputArray samples, int k, OutputArray results, OutputArray neighborResponses, OutputArray dist, float *rval)
-{
+CvStatus KNearest_FindNearest(const PtrKNearest *cs, CVInputArray samples, int k, CVOutputArray results, CVOutputArray neighborResponses, CVOutputArray dist, float *rval) {
     BEGIN_WRAP
-    *rval = cs->findNearest(samples, k, results, neighborResponses, dist);
+    *rval = cs->get()->findNearest(samples, k, results, neighborResponses, dist);
     END_WRAP
 }
 
-CvStatus KNearest_Create(Ptr<KNearest> *rval)
-{
+CvStatus KNearest_Create(PtrKNearest *rval) {
     BEGIN_WRAP
-    *rval = KNearest::create();
+    *rval = cv::ml::KNearest::create();
     END_WRAP
 }
 
-CvStatus KNearest_Load(const String& filepath, Ptr<KNearest> *rval)
-{
+CvStatus KNearest_Load(const CVString& filepath, PtrKNearest *rval) {
     BEGIN_WRAP
-    *rval = KNearest::load(filepath);
+    *rval = cv::ml::KNearest::load(filepath);
     END_WRAP
 }
 
-CvStatus SVM_GetType(const SVM *cs, int *rval)
-{
+CvStatus SVM_GetType(const PtrSVM *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getType();
+    *rval = cs->get()->getType();
     END_WRAP
 }
 
-CvStatus SVM_SetType(SVM *cs, int val)
-{
+CvStatus SVM_SetType(PtrSVM *cs, int val) {
     BEGIN_WRAP
-    cs->setType(val);
+    cs->get()->setType(val);
     END_WRAP
 }
 
-CvStatus SVM_GetGamma(const SVM *cs, double *rval)
-{
+CvStatus SVM_GetGamma(const PtrSVM *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getGamma();
+    *rval = cs->get()->getGamma();
     END_WRAP
 }
 
-CvStatus SVM_SetGamma(SVM *cs, double val)
-{
+CvStatus SVM_SetGamma(PtrSVM *cs, double val) {
     BEGIN_WRAP
-    cs->setGamma(val);
+    cs->get()->setGamma(val);
     END_WRAP
 }
 
-CvStatus SVM_GetCoef0(const SVM *cs, double *rval)
-{
+CvStatus SVM_GetCoef0(const PtrSVM *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getCoef0();
+    *rval = cs->get()->getCoef0();
     END_WRAP
 }
 
-CvStatus SVM_SetCoef0(SVM *cs, double val)
-{
+CvStatus SVM_SetCoef0(PtrSVM *cs, double val) {
     BEGIN_WRAP
-    cs->setCoef0(val);
+    cs->get()->setCoef0(val);
     END_WRAP
 }
 
-CvStatus SVM_GetDegree(const SVM *cs, double *rval)
-{
+CvStatus SVM_GetDegree(const PtrSVM *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getDegree();
+    *rval = cs->get()->getDegree();
     END_WRAP
 }
 
-CvStatus SVM_SetDegree(SVM *cs, double val)
-{
+CvStatus SVM_SetDegree(PtrSVM *cs, double val) {
     BEGIN_WRAP
-    cs->setDegree(val);
+    cs->get()->setDegree(val);
     END_WRAP
 }
 
-CvStatus SVM_GetC(const SVM *cs, double *rval)
-{
+CvStatus SVM_GetC(const PtrSVM *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getC();
+    *rval = cs->get()->getC();
     END_WRAP
 }
 
-CvStatus SVM_SetC(SVM *cs, double val)
-{
+CvStatus SVM_SetC(PtrSVM *cs, double val) {
     BEGIN_WRAP
-    cs->setC(val);
+    cs->get()->setC(val);
     END_WRAP
 }
 
-CvStatus SVM_GetNu(const SVM *cs, double *rval)
-{
+CvStatus SVM_GetNu(const PtrSVM *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getNu();
+    *rval = cs->get()->getNu();
     END_WRAP
 }
 
-CvStatus SVM_SetNu(SVM *cs, double val)
-{
+CvStatus SVM_SetNu(PtrSVM *cs, double val) {
     BEGIN_WRAP
-    cs->setNu(val);
+    cs->get()->setNu(val);
     END_WRAP
 }
 
-CvStatus SVM_GetP(const SVM *cs, double *rval)
-{
+CvStatus SVM_GetP(const PtrSVM *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getP();
+    *rval = cs->get()->getP();
     END_WRAP
 }
 
-CvStatus SVM_SetP(SVM *cs, double val)
-{
+CvStatus SVM_SetP(PtrSVM *cs, double val) {
     BEGIN_WRAP
-    cs->setP(val);
+    cs->get()->setP(val);
     END_WRAP
 }
 
-CvStatus SVM_GetClassWeights(const SVM *cs, Mat *rval)
-{
+CvStatus SVM_GetClassWeights(const PtrSVM *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getClassWeights();
+    *rval = cs->get()->getClassWeights();
     END_WRAP
 }
 
-CvStatus SVM_SetClassWeights(SVM *cs, const Mat &val)
-{
+CvStatus SVM_SetClassWeights(PtrSVM *cs, const cv::Mat &val) {
     BEGIN_WRAP
-    cs->setClassWeights(val);
+    cs->get()->setClassWeights(val);
     END_WRAP
 }
 
-CvStatus SVM_GetTermCriteria(const SVM *cs, TermCriteria *rval)
-{
+CvStatus SVM_GetTermCriteria(const PtrSVM *cs, cv::TermCriteria *rval) {
     BEGIN_WRAP
-    *rval = cs->getTermCriteria();
+    *rval = cs->get()->getTermCriteria();
     END_WRAP
 }
 
-CvStatus SVM_SetTermCriteria(SVM *cs, const TermCriteria &val)
-{
+CvStatus SVM_SetTermCriteria(PtrSVM *cs, const cv::TermCriteria &val) {
     BEGIN_WRAP
-    cs->setTermCriteria(val);
+    cs->get()->setTermCriteria(val);
     END_WRAP
 }
 
-CvStatus SVM_GetKernelType(const SVM *cs, int *rval)
-{
+CvStatus SVM_GetKernelType(const PtrSVM *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getKernelType();
+    *rval = cs->get()->getKernelType();
     END_WRAP
 }
 
-CvStatus SVM_SetKernel(SVM *cs, int kernelType)
-{
+CvStatus SVM_SetKernel(PtrSVM *cs, int kernelType) {
     BEGIN_WRAP
-    cs->setKernel(kernelType);
+    cs->get()->setKernel(kernelType);
     END_WRAP
 }
 
-CvStatus SVM_SetCustomKernel(SVM *cs, const Ptr<SVM::Kernel> &_kernel)
-{
+CvStatus SVM_SetCustomKernel(PtrSVM *cs, const cv::Ptr<cv::ml::SVM::Kernel> &_kernel) {
     BEGIN_WRAP
-    cs->setCustomKernel(_kernel);
+    cs->get()->setCustomKernel(_kernel);
     END_WRAP
 }
 
-CvStatus SVM_TrainAuto(SVM *cs, const Ptr<TrainData>& data, int kFold, ParamGrid Cgrid, ParamGrid gammaGrid, ParamGrid pGrid, ParamGrid nuGrid, ParamGrid coeffGrid, ParamGrid degreeGrid, bool balanced, bool *rval)
-{
+CvStatus SVM_TrainAuto(PtrSVM *cs, const PtrTrainData& data, int kFold, ParamGrid Cgrid, ParamGrid gammaGrid, ParamGrid pGrid, ParamGrid nuGrid, ParamGrid coeffGrid, ParamGrid degreeGrid, bool balanced, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->trainAuto(data, kFold, Cgrid, gammaGrid, pGrid, nuGrid, coeffGrid, degreeGrid, balanced);
+    *rval = cs->get()->trainAuto(data, kFold, Cgrid, gammaGrid, pGrid, nuGrid, coeffGrid, degreeGrid, balanced);
     END_WRAP
 }
 
-CvStatus SVM_TrainAutoWithData(SVM *cs, InputArray samples, int layout, InputArray responses, int kFold, Ptr<ParamGrid> Cgrid, Ptr<ParamGrid> gammaGrid, Ptr<ParamGrid> pGrid, Ptr<ParamGrid> nuGrid, Ptr<ParamGrid> coeffGrid, Ptr<ParamGrid> degreeGrid, bool balanced, bool *rval)
-{
+CvStatus SVM_TrainAutoWithData(PtrSVM *cs, CVInputArray samples, int layout, CVInputArray responses, int kFold, PtrParamGrid Cgrid, PtrParamGrid gammaGrid, PtrParamGrid pGrid, PtrParamGrid nuGrid, PtrParamGrid coeffGrid, PtrParamGrid degreeGrid, bool balanced, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->trainAuto(samples, layout, responses, kFold, Cgrid, gammaGrid, pGrid, nuGrid, coeffGrid, degreeGrid, balanced);
+    *rval = cs->get()->trainAuto(samples, layout, responses, kFold, Cgrid, gammaGrid, pGrid, nuGrid, coeffGrid, degreeGrid, balanced);
     END_WRAP
 }
 
-CvStatus SVM_GetSupportVectors(const SVM *cs, Mat *rval)
-{
+CvStatus SVM_GetSupportVectors(const PtrSVM *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getSupportVectors();
+    *rval = cs->get()->getSupportVectors();
     END_WRAP
 }
-
-CvStatus
 
- SVM_GetUncompressedSupportVectors(const SVM *cs, Mat *rval)
-{
+CvStatus SVM_GetUncompressedSupportVectors(const PtrSVM *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getUncompressedSupportVectors();
+    *rval = cs->get()->getUncompressedSupportVectors();
     END_WRAP
 }
 
-CvStatus SVM_GetDecisionFunction(const SVM *cs, int i, OutputArray alpha, OutputArray svidx, double *rval)
-{
+CvStatus SVM_GetDecisionFunction(const PtrSVM *cs, int i, CVOutputArray alpha, CVOutputArray svidx, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getDecisionFunction(i, alpha, svidx);
+    *rval = cs->get()->getDecisionFunction(i, alpha, svidx);
     END_WRAP
 }
 
-CvStatus SVM_GetDefaultGrid(int param_id, ParamGrid *rval)
-{
+CvStatus SVM_GetDefaultGrid(int param_id, ParamGrid *rval) {
     BEGIN_WRAP
-    *rval = SVM::getDefaultGrid(param_id);
+    *rval = cv::ml::SVM::getDefaultGrid(param_id);
     END_WRAP
 }
 
-CvStatus SVM_GetDefaultGridPtr(int param_id, Ptr<ParamGrid> *rval)
-{
+CvStatus SVM_GetDefaultGridPtr(int param_id, PtrParamGrid *rval) {
     BEGIN_WRAP
-    *rval = SVM::getDefaultGridPtr(param_id);
+    *rval = cv::ml::SVM::getDefaultGridPtr(param_id);
     END_WRAP
 }
 
-CvStatus SVM_Create(Ptr<SVM> *rval)
-{
+CvStatus SVM_Create(PtrSVM *rval) {
     BEGIN_WRAP
-    *rval = SVM::create();
+    *rval = cv::ml::SVM::create();
     END_WRAP
 }
 
-CvStatus SVM_Load(const String& filepath, Ptr<SVM> *rval)
-{
+CvStatus SVM_Load(const CVString& filepath, PtrSVM *rval) {
     BEGIN_WRAP
-    *rval = SVM::load(filepath);
+    *rval = cv::ml::SVM::load(filepath);
     END_WRAP
 }
 
-CvStatus EM_GetClustersNumber(const EM *cs, int *rval)
-{
+CvStatus EM_GetClustersNumber(const PtrEM *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getClustersNumber();
+    *rval = cs->get()->getClustersNumber();
     END_WRAP
 }
 
-CvStatus EM_SetClustersNumber(EM *cs, int val)
-{
+CvStatus EM_SetClustersNumber(PtrEM *cs, int val) {
     BEGIN_WRAP
-    cs->setClustersNumber(val);
+    cs->get()->setClustersNumber(val);
     END_WRAP
 }
 
-CvStatus EM_GetCovarianceMatrixType(const EM *cs, int *rval)
-{
+CvStatus EM_GetCovarianceMatrixType(const PtrEM *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getCovarianceMatrixType();
+    *rval = cs->get()->getCovarianceMatrixType();
     END_WRAP
 }
 
-CvStatus EM_SetCovarianceMatrixType(EM *cs, int val)
-{
+CvStatus EM_SetCovarianceMatrixType(PtrEM *cs, int val) {
     BEGIN_WRAP
-    cs->setCovarianceMatrixType(val);
+    cs->get()->setCovarianceMatrixType(val);
     END_WRAP
 }
 
-CvStatus EM_GetTermCriteria(const EM *cs, TermCriteria *rval)
-{
+CvStatus EM_GetTermCriteria(const PtrEM *cs, cv::TermCriteria *rval) {
     BEGIN_WRAP
-    *rval = cs->getTermCriteria();
+    *rval = cs->get()->getTermCriteria();
     END_WRAP
 }
 
-CvStatus EM_SetTermCriteria(EM *cs, const TermCriteria &val)
-{
+CvStatus EM_SetTermCriteria(PtrEM *cs, const cv::TermCriteria &val) {
     BEGIN_WRAP
-    cs->setTermCriteria(val);
+    cs->get()->setTermCriteria(val);
     END_WRAP
 }
 
-CvStatus EM_GetWeights(const EM *cs, Mat *rval)
-{
+CvStatus EM_GetWeights(const PtrEM *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getWeights();
+    *rval = cs->get()->getWeights();
     END_WRAP
 }
 
-CvStatus EM_GetMeans(const EM *cs, Mat *rval)
-{
+CvStatus EM_GetMeans(const PtrEM *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getMeans();
+    *rval = cs->get()->getMeans();
     END_WRAP
 }
 
-CvStatus EM_GetCovs(const EM *cs, std::vector<Mat>& covs)
-{
+CvStatus EM_GetCovs(const PtrEM *cs, std::vector<cv::Mat>& covs) {
     BEGIN_WRAP
-    cs->getCovs(covs);
+    cs->get()->getCovs(covs);
     END_WRAP
 }
 
-CvStatus EM_Predict(const EM *cs, InputArray samples, OutputArray results, int flags, float *rval)
-{
+CvStatus EM_Predict(const PtrEM *cs, CVInputArray samples, CVOutputArray results, int flags, float *rval) {
     BEGIN_WRAP
-    *rval = cs->predict(samples, results, flags);
+    *rval = cs->get()->predict(samples, results, flags);
     END_WRAP
 }
 
-CvStatus EM_Predict2(const EM *cs, InputArray sample, OutputArray probs, Vec2d *rval)
-{
+CvStatus EM_Predict2(const PtrEM *cs, CVInputArray sample, CVOutputArray probs, cv::Vec2d *rval) {
     BEGIN_WRAP
-    *rval = cs->predict2(sample, probs);
+    *rval = cs->get()->predict2(sample, probs);
     END_WRAP
 }
 
-CvStatus EM_TrainEM(EM *cs, InputArray samples, OutputArray logLikelihoods, OutputArray labels, OutputArray probs, bool *rval)
-{
+CvStatus EM_TrainEM(PtrEM *cs, CVInputArray samples, CVOutputArray logLikelihoods, CVOutputArray labels, CVOutputArray probs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->trainEM(samples, logLikelihoods, labels, probs);
+    *rval = cs->get()->trainEM(samples, logLikelihoods, labels, probs);
     END_WRAP
 }
 
-CvStatus EM_TrainE(EM *cs, InputArray samples, InputArray means0, InputArray covs0, InputArray weights0, OutputArray logLikelihoods, OutputArray labels, OutputArray probs, bool *rval)
-{
+CvStatus EM_TrainE(PtrEM *cs, CVInputArray samples, CVInputArray means0, CVInputArray covs0, CVInputArray weights0, CVOutputArray logLikelihoods, CVOutputArray labels, CVOutputArray probs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->trainE(samples, means0, covs0, weights0, logLikelihoods, labels, probs);
+    *rval = cs->get()->trainE(samples, means0, covs0, weights0, logLikelihoods, labels, probs);
     END_WRAP
 }
 
-CvStatus EM_TrainM(EM *cs, InputArray samples, InputArray probs0, OutputArray logLikelihoods, OutputArray labels, OutputArray probs, bool *rval)
-{
+CvStatus EM_TrainM(PtrEM *cs, CVInputArray samples, CVInputArray probs0, CVOutputArray logLikelihoods, CVOutputArray labels, CVOutputArray probs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->trainM(samples, probs0, logLikelihoods, labels, probs);
+    *rval = cs->get()->trainM(samples, probs0, logLikelihoods, labels, probs);
     END_WRAP
 }
 
-CvStatus EM_Create(Ptr<EM> *rval)
-{
+CvStatus EM_Create(PtrEM *rval) {
     BEGIN_WRAP
-    *rval = EM::create();
+    *rval = cv::ml::EM::create();
     END_WRAP
 }
 
-CvStatus EM_Load(const String& filepath, const String& nodeName, Ptr<EM> *rval)
-{
+CvStatus EM_Load(const CVString& filepath, const CVString& nodeName, PtrEM *rval) {
     BEGIN_WRAP
-    *rval = EM::load(filepath, nodeName);
+    *rval = cv::ml::EM::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus DTrees_GetMaxCategories(const DTrees *cs, int *rval)
-{
+CvStatus DTrees_GetMaxCategories(const PtrDTrees *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getMaxCategories();
+    *rval = cs->get()->getMaxCategories();
     END_WRAP
 }
 
-CvStatus DTrees_SetMaxCategories(DTrees *cs, int val)
-{
+CvStatus DTrees_SetMaxCategories(PtrDTrees *cs, int val) {
     BEGIN_WRAP
-    cs->setMaxCategories(val);
+    cs->get()->setMaxCategories(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetMaxDepth(const DTrees *cs, int *rval)
-{
+CvStatus DTrees_GetMaxDepth(const PtrDTrees *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getMaxDepth();
+    *rval = cs->get()->getMaxDepth();
     END_WRAP
 }
 
-CvStatus DTrees_SetMaxDepth(DTrees *cs, int val)
-{
+CvStatus DTrees_SetMaxDepth(PtrDTrees *cs, int val) {
     BEGIN_WRAP
-    cs->setMaxDepth(val);
+    cs->get()->setMaxDepth(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetMinSampleCount(const DTrees *cs, int *rval)
-{
+CvStatus DTrees_GetMinSampleCount(const PtrDTrees *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getMinSampleCount();
+    *rval = cs->get()->getMinSampleCount();
     END_WRAP
 }
 
-CvStatus DTrees_SetMinSampleCount(DTrees *cs, int val)
-{
+CvStatus DTrees_SetMinSampleCount(PtrDTrees *cs, int val) {
     BEGIN_WRAP
-    cs->setMinSampleCount(val);
+    cs->get()->setMinSampleCount(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetCVFolds(const DTrees *cs, int *rval)
-{
+CvStatus DTrees_GetCVFolds(const PtrDTrees *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getCVFolds();
+    *rval = cs->get()->getCVFolds();
     END_WRAP
 }
 
-CvStatus DTrees_SetCVFolds(DTrees *cs, int val)
-{
+CvStatus DTrees_SetCVFolds(PtrDTrees *cs, int val) {
     BEGIN_WRAP
-    cs->setCVFolds(val);
+    cs->get()->setCVFolds(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetUseSurrogates(const DTrees *cs, bool *rval)
-{
+CvStatus DTrees_GetUseSurrogates(const PtrDTrees *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->getUseSurrogates();
+    *rval = cs->get()->getUseSurrogates();
     END_WRAP
 }
 
-CvStatus DTrees_SetUseSurrogates(DTrees *cs, bool val)
-{
+CvStatus DTrees_SetUseSurrogates(PtrDTrees *cs, bool val) {
     BEGIN_WRAP
-    cs->setUseSurrogates(val);
+    cs->get()->setUseSurrogates(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetUse1SERule(const DTrees *cs, bool *rval)
-{
+CvStatus DTrees_GetUse1SERule(const PtrDTrees *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->getUse1SERule();
+    *rval = cs->get()->getUse1SERule();
     END_WRAP
 }
 
-CvStatus DTrees_SetUse1SERule(DTrees *cs, bool val)
-{
+CvStatus DTrees_SetUse1SERule(PtrDTrees *cs, bool val) {
     BEGIN_WRAP
-    cs->setUse1SERule(val);
+    cs->get()->setUse1SERule(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetTruncatePrunedTree(const DTrees *cs, bool *rval)
-{
+CvStatus DTrees_GetTruncatePrunedTree(const PtrDTrees *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->getTruncatePrunedTree();
+    *rval = cs->get()->getTruncatePrunedTree();
     END_WRAP
 }
 
-CvStatus DTrees_SetTruncatePrunedTree(DTrees *cs, bool val)
-{
+CvStatus DTrees_SetTruncatePrunedTree(PtrDTrees *cs, bool val) {
     BEGIN_WRAP
-    cs->setTruncatePrunedTree(val);
+    cs->get()->setTruncatePrunedTree(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetRegressionAccuracy(const DTrees *cs, float *rval)
-{
+CvStatus DTrees_GetRegressionAccuracy(const PtrDTrees *cs, float *rval) {
     BEGIN_WRAP
-    *rval = cs->getRegressionAccuracy();
+    *rval = cs->get()->getRegressionAccuracy();
     END_WRAP
 }
 
-CvStatus DTrees_SetRegressionAccuracy(DTrees *cs, float val)
-{
+CvStatus DTrees_SetRegressionAccuracy(PtrDTrees *cs, float val) {
     BEGIN_WRAP
-    cs->setRegressionAccuracy(val);
+    cs->get()->setRegressionAccuracy(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetPriors(const DTrees *cs, Mat *rval)
-{
+CvStatus DTrees_GetPriors(const PtrDTrees *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getPriors();
+    *rval = cs->get()->getPriors();
     END_WRAP
 }
 
-CvStatus DTrees_SetPriors(DTrees *cs, const Mat &val)
-{
+CvStatus DTrees_SetPriors(PtrDTrees *cs, const cv::Mat &val) {
     BEGIN_WRAP
-    cs->setPriors(val);
+    cs->get()->setPriors(val);
     END_WRAP
 }
 
-CvStatus DTrees_GetRoots(const DTrees *cs, const std::vector<int>** rval)
-{
+CvStatus DTrees_GetRoots(const PtrDTrees *cs, const std::vector<int>** rval) {
     BEGIN_WRAP
-    *rval = &cs->getRoots();
+    *rval = &cs->get()->getRoots();
     END_WRAP
 }
 
-CvStatus DTrees_GetNodes(const DTrees *cs, const std::vector<DTrees::Node>** rval)
-{
+CvStatus DTrees_GetNodes(const PtrDTrees *cs, const std::vector<cv::ml::DTrees::Node>** rval) {
     BEGIN_WRAP
-    *rval = &cs->getNodes();
+    *rval = &cs->get()->getNodes();
     END_WRAP
 }
 
-CvStatus DTrees_GetSplits(const DTrees *cs, const std::vector<DTrees::Split>** rval)
-{
+CvStatus DTrees_GetSplits(const PtrDTrees *cs, const std::vector<cv::ml::DTrees::Split>** rval) {
     BEGIN_WRAP
-    *rval = &cs->getSplits();
+    *rval = &cs->get()->getSplits();
     END_WRAP
 }
 
-CvStatus DTrees_GetSubsets(const DTrees *cs, const std::vector<int>** rval)
-{
+CvStatus DTrees_GetSubsets(const PtrDTrees *cs, const std::vector<int>** rval) {
     BEGIN_WRAP
-    *rval = &cs->getSubsets();
+    *rval = &cs->get()->getSubsets();
     END_WRAP
 }
 
-CvStatus DTrees_Create(Ptr<DTrees> *rval)
-{
+CvStatus DTrees_Create(PtrDTrees *rval) {
     BEGIN_WRAP
-    *rval = DTrees::create();
+    *rval = cv::ml::DTrees::create();
     END_WRAP
 }
 
-CvStatus DTrees_Load(const String& filepath, const String& nodeName, Ptr<DTrees> *rval)
-{
+CvStatus DTrees_Load(const CVString& filepath, const CVString& nodeName, PtrDTrees *rval) {
     BEGIN_WRAP
-    *rval = DTrees::load(filepath, nodeName);
+    *rval = cv::ml::DTrees::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus RTrees_GetCalculateVarImportance(const RTrees *cs, bool *rval)
-{
+CvStatus RTrees_GetCalculateVarImportance(const PtrRTrees *cs, bool *rval) {
     BEGIN_WRAP
-    *rval = cs->getCalculateVarImportance();
+    *rval = cs->get()->getCalculateVarImportance();
     END_WRAP
 }
 
-CvStatus RTrees_SetCalculateVarImportance(RTrees *cs, bool val)
-{
+CvStatus RTrees_SetCalculateVarImportance(PtrRTrees *cs, bool val) {
     BEGIN_WRAP
-    cs->setCalculateVarImportance(val);
+    cs->get()->setCalculateVarImportance(val);
     END_WRAP
 }
 
-CvStatus RTrees_GetActiveVarCount(const RTrees *cs, int *rval)
-{
+CvStatus RTrees_GetActiveVarCount(const PtrRTrees *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getActiveVar
-
-Count();
+    *rval = cs->get()->getActiveVarCount();
     END_WRAP
 }
 
-CvStatus RTrees_SetActiveVarCount(RTrees *cs, int val)
-{
+CvStatus RTrees_SetActiveVarCount(PtrRTrees *cs, int val) {
     BEGIN_WRAP
-    cs->setActiveVarCount(val);
+    cs->get()->setActiveVarCount(val);
     END_WRAP
 }
 
-CvStatus RTrees_GetTermCriteria(const RTrees *cs, TermCriteria *rval)
-{
+CvStatus RTrees_GetTermCriteria(const PtrRTrees *cs, cv::TermCriteria *rval) {
     BEGIN_WRAP
-    *rval = cs->getTermCriteria();
+    *rval = cs->get()->getTermCriteria();
     END_WRAP
 }
 
-CvStatus RTrees_SetTermCriteria(RTrees *cs, const TermCriteria &val)
-{
+CvStatus RTrees_SetTermCriteria(PtrRTrees *cs, const cv::TermCriteria &val) {
     BEGIN_WRAP
-    cs->setTermCriteria(val);
+    cs->get()->setTermCriteria(val);
     END_WRAP
 }
 
-CvStatus RTrees_GetVarImportance(const RTrees *cs, Mat *rval)
-{
+CvStatus RTrees_GetVarImportance(const PtrRTrees *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getVarImportance();
+    *rval = cs->get()->getVarImportance();
     END_WRAP
 }
 
-CvStatus RTrees_GetVotes(const RTrees *cs, InputArray samples, OutputArray results, int flags)
-{
+CvStatus RTrees_GetVotes(const PtrRTrees *cs, CVInputArray samples, CVOutputArray results, int flags) {
     BEGIN_WRAP
-    cs->getVotes(samples, results, flags);
+    cs->get()->getVotes(samples, results, flags);
     END_WRAP
 }
 
-CvStatus RTrees_GetOOBError(const RTrees *cs, double *rval)
-{
+CvStatus RTrees_GetOOBError(const PtrRTrees *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getOOBError();
+    *rval = cs->get()->getOOBError();
     END_WRAP
 }
 
-CvStatus RTrees_Create(Ptr<RTrees> *rval)
-{
+CvStatus RTrees_Create(PtrRTrees *rval) {
     BEGIN_WRAP
-    *rval = RTrees::create();
+    *rval = cv::ml::RTrees::create();
     END_WRAP
 }
 
-CvStatus RTrees_Load(const String& filepath, const String& nodeName, Ptr<RTrees> *rval)
-{
+CvStatus RTrees_Load(const CVString& filepath, const CVString& nodeName, PtrRTrees *rval) {
     BEGIN_WRAP
-    *rval = RTrees::load(filepath, nodeName);
+    *rval = cv::ml::RTrees::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus Boost_GetBoostType(const Boost *cs, int *rval)
-{
+CvStatus Boost_GetBoostType(const PtrBoost *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getBoostType();
+    *rval = cs->get()->getBoostType();
     END_WRAP
 }
 
-CvStatus Boost_SetBoostType(Boost *cs, int val)
-{
+CvStatus Boost_SetBoostType(PtrBoost *cs, int val) {
     BEGIN_WRAP
-    cs->setBoostType(val);
+    cs->get()->setBoostType(val);
     END_WRAP
 }
 
-CvStatus Boost_GetWeakCount(const Boost *cs, int *rval)
-{
+CvStatus Boost_GetWeakCount(const PtrBoost *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getWeakCount();
+    *rval = cs->get()->getWeakCount();
     END_WRAP
 }
 
-CvStatus Boost_SetWeakCount(Boost *cs, int val)
-{
+CvStatus Boost_SetWeakCount(PtrBoost *cs, int val) {
     BEGIN_WRAP
-    cs->setWeakCount(val);
+    cs->get()->setWeakCount(val);
     END_WRAP
 }
 
-CvStatus Boost_GetWeightTrimRate(const Boost *cs, double *rval)
-{
+CvStatus Boost_GetWeightTrimRate(const PtrBoost *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getWeightTrimRate();
+    *rval = cs->get()->getWeightTrimRate();
     END_WRAP
 }
 
-CvStatus Boost_SetWeightTrimRate(Boost *cs, double val)
-{
+CvStatus Boost_SetWeightTrimRate(PtrBoost *cs, double val) {
     BEGIN_WRAP
-    cs->setWeightTrimRate(val);
+    cs->get()->setWeightTrimRate(val);
     END_WRAP
 }
 
-CvStatus Boost_Create(Ptr<Boost> *rval)
-{
+CvStatus Boost_Create(PtrBoost *rval) {
     BEGIN_WRAP
-    *rval = Boost::create();
+    *rval = cv::ml::Boost::create();
     END_WRAP
 }
 
-CvStatus Boost_Load(const String& filepath, const String& nodeName, Ptr<Boost> *rval)
-{
+CvStatus Boost_Load(const CVString& filepath, const CVString& nodeName, PtrBoost *rval) {
     BEGIN_WRAP
-    *rval = Boost::load(filepath, nodeName);
+    *rval = cv::ml::Boost::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetTrainMethod(const ANN_MLP *cs, int *rval)
-{
+CvStatus ANN_MLP_GetTrainMethod(const PtrANN_MLP *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainMethod();
+    *rval = cs->get()->getTrainMethod();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetTrainMethod(ANN_MLP *cs, int method, double param1, double param2)
-{
+CvStatus ANN_MLP_SetTrainMethod(PtrANN_MLP *cs, int method, double param1, double param2) {
     BEGIN_WRAP
-    cs->setTrainMethod(method, param1, param2);
+    cs->get()->setTrainMethod(method, param1, param2);
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetActivationFunction(ANN_MLP *cs, int type, double param1, double param2)
-{
+CvStatus ANN_MLP_SetActivationFunction(PtrANN_MLP *cs, int type, double param1, double param2) {
     BEGIN_WRAP
-    cs->setActivationFunction(type, param1, param2);
+    cs->get()->setActivationFunction(type, param1, param2);
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetLayerSizes(ANN_MLP *cs, InputArray _layer_sizes)
-{
+CvStatus ANN_MLP_SetLayerSizes(PtrANN_MLP *cs, CVInputArray _layer_sizes) {
     BEGIN_WRAP
-    cs->setLayerSizes(_layer_sizes);
+    cs->get()->setLayerSizes(_layer_sizes);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetLayerSizes(const ANN_MLP *cs, cv::Mat *rval)
-{
+CvStatus ANN_MLP_GetLayerSizes(const PtrANN_MLP *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getLayerSizes();
+    *rval = cs->get()->getLayerSizes();
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetTermCriteria(const ANN_MLP *cs, TermCriteria *rval)
-{
+CvStatus ANN_MLP_GetTermCriteria(const PtrANN_MLP *cs, cv::TermCriteria *rval) {
     BEGIN_WRAP
-    *rval = cs->getTermCriteria();
+    *rval = cs->get()->getTermCriteria();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetTermCriteria(ANN_MLP *cs, TermCriteria val)
-{
+CvStatus ANN_MLP_SetTermCriteria(PtrANN_MLP *cs, cv::TermCriteria val) {
     BEGIN_WRAP
-    cs->setTermCriteria(val);
+    cs->get()->setTermCriteria(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetBackpropWeightScale(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetBackpropWeightScale(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getBackpropWeightScale();
+    *rval = cs->get()->getBackpropWeightScale();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetBackpropWeightScale(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetBackpropWeightScale(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setBackpropWeightScale(val);
+    cs->get()->setBackpropWeightScale(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetBackpropMomentumScale(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetBackpropMomentumScale(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getBackpropMomentumScale();
+    *rval = cs->get()->getBackpropMomentumScale();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetBackpropMomentumScale(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetBackpropMomentumScale(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setBackpropMomentumScale(val);
+    cs->get()->setBackpropMomentumScale(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetRpropDW0(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetRpropDW0(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getRpropDW0();
+    *rval = cs->get()->getRpropDW0();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetRpropDW0(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetRpropDW0(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setRpropDW0(val);
+    cs->get()->setRpropDW0(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetRpropDWPlus(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetRpropDWPlus(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getRpropDWPlus();
+    *rval = cs->get()->getRpropDWPlus();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetRpropDWPlus(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetRpropDWPlus(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setRpropDWPlus(val);
+    cs->get()->setRpropDWPlus(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetRpropDWMinus(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetRpropDWMinus(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getRpropDWMinus();
+    *rval = cs->get()->getRpropDWMinus();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetRpropDWMinus(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetRpropDWMinus(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setRpropDWMinus(val);
+    cs->get()->setRpropDWMinus(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetRpropDWMin(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetRpropDWMin(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getRpropDWMin();
+    *rval = cs->get()->getRpropDWMin();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetRpropDWMin(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetRpropDWMin(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setRpropDWMin(val);
+    cs->get()->setRpropDWMin(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetRpropDWMax(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetRpropDWMax(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getRpropDWMax();
+    *rval = cs->get()->getRpropDWMax();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetRpropDWMax(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetRpropDWMax(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setRpropDWMax(val);
+    cs->get()->setRpropDWMax(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetAnnealInitialT(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetAnnealInitialT(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getAnnealInitialT();
+    *rval = cs->get()->getAnnealInitialT();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetAnnealInitialT(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetAnnealInitialT(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setAnnealInitialT(val);
+    cs->get()->setAnnealInitialT(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetAnnealFinalT(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetAnnealFinalT(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getAnnealFinalT();
+    *rval = cs->get()->getAnnealFinalT();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetAnnealFinalT(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetAnnealFinalT(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setAnnealFinalT(val);
+    cs->get()->setAnnealFinalT(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetAnnealCoolingRatio(const ANN_MLP *cs, double *rval)
-{
+CvStatus ANN_MLP_GetAnnealCoolingRatio(const PtrANN_MLP *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getAnnealCoolingRatio();
+    *rval = cs->get()->getAnnealCoolingRatio();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetAnnealCoolingRatio(ANN_MLP *cs, double val)
-{
+CvStatus ANN_MLP_SetAnnealCoolingRatio(PtrANN_MLP *cs, double val) {
     BEGIN_WRAP
-    cs->setAnnealCoolingRatio(val);
+    cs->get()->setAnnealCoolingRatio(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetAnnealItePerStep(const ANN_MLP *cs, int *rval)
-{
+CvStatus ANN_MLP_GetAnnealItePerStep(const PtrANN_MLP *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getAnnealItePerStep();
+    *rval = cs->get()->getAnnealItePerStep();
     END_WRAP
 }
 
-CvStatus ANN_MLP_SetAnnealItePerStep(ANN_MLP *cs, int val)
-{
+CvStatus ANN_MLP_SetAnnealItePerStep(PtrANN_MLP *cs, int val) {
     BEGIN_WRAP
-    cs->setAnnealItePerStep(val);
+    cs->get()->setAnnealItePerStep(val);
     END_WRAP
 }
 
-CvStatus ANN_MLP_GetWeights(const ANN_MLP *cs, int layerIdx, Mat *rval)
-{
+CvStatus ANN_MLP_GetWeights(const PtrANN_MLP *cs, int layerIdx, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getWeights(layerIdx);
+    *rval = cs->get()->getWeights(layerIdx);
     END_WRAP
 }
 
-CvStatus ANN_MLP_Create(Ptr<ANN_MLP> *rval)
-{
+CvStatus ANN_MLP_Create(PtrANN_MLP *rval) {
     BEGIN_WRAP
-    *rval = ANN_MLP::create();
+    *rval = cv::ml::ANN_MLP::create();
     END_WRAP
 }
 
-CvStatus ANN_MLP_Load(const String& filepath, Ptr<ANN_MLP> *rval)
-{
+CvStatus ANN_MLP_Load(const CVString& filepath, PtrANN_MLP *rval) {
     BEGIN_WRAP
-    *rval = ANN_MLP::load(filepath);
+    *rval = cv::ml::ANN_MLP::load(filepath);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetLearningRate(const LogisticRegression *cs, double *rval)
-{
+CvStatus LogisticRegression_GetLearningRate(const PtrLogisticRegression *cs, double *rval) {
     BEGIN_WRAP
-    *rval = cs->getLearningRate();
+    *rval = cs->get()->getLearningRate();
     END_WRAP
 }
 
-CvStatus LogisticRegression_SetLearningRate(LogisticRegression *cs, double val)
-{
+CvStatus LogisticRegression_SetLearningRate(PtrLogisticRegression *cs, double val) {
     BEGIN_WRAP
-
-
-    cs->setLearningRate(val);
+    cs->get()->setLearningRate(val);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetIterations(const LogisticRegression *cs, int *rval)
-{
+CvStatus LogisticRegression_GetIterations(const PtrLogisticRegression *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getIterations();
+    *rval = cs->get()->getIterations();
     END_WRAP
 }
 
-CvStatus LogisticRegression_SetIterations(LogisticRegression *cs, int val)
-{
+CvStatus LogisticRegression_SetIterations(PtrLogisticRegression *cs, int val) {
     BEGIN_WRAP
-    cs->setIterations(val);
+    cs->get()->setIterations(val);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetRegularization(const LogisticRegression *cs, int *rval)
-{
+CvStatus LogisticRegression_GetRegularization(const PtrLogisticRegression *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getRegularization();
+    *rval = cs->get()->getRegularization();
     END_WRAP
 }
 
-CvStatus LogisticRegression_SetRegularization(LogisticRegression *cs, int val)
-{
+CvStatus LogisticRegression_SetRegularization(PtrLogisticRegression *cs, int val) {
     BEGIN_WRAP
-    cs->setRegularization(val);
+    cs->get()->setRegularization(val);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetTrainMethod(const LogisticRegression *cs, int *rval)
-{
+CvStatus LogisticRegression_GetTrainMethod(const PtrLogisticRegression *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getTrainMethod();
+    *rval = cs->get()->getTrainMethod();
     END_WRAP
 }
 
-CvStatus LogisticRegression_SetTrainMethod(LogisticRegression *cs, int val)
-{
+CvStatus LogisticRegression_SetTrainMethod(PtrLogisticRegression *cs, int val) {
     BEGIN_WRAP
-    cs->setTrainMethod(val);
+    cs->get()->setTrainMethod(val);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetMiniBatchSize(const LogisticRegression *cs, int *rval)
-{
+CvStatus LogisticRegression_GetMiniBatchSize(const PtrLogisticRegression *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getMiniBatchSize();
+    *rval = cs->get()->getMiniBatchSize();
     END_WRAP
 }
 
-CvStatus LogisticRegression_SetMiniBatchSize(LogisticRegression *cs, int val)
-{
+CvStatus LogisticRegression_SetMiniBatchSize(PtrLogisticRegression *cs, int val) {
     BEGIN_WRAP
-    cs->setMiniBatchSize(val);
+    cs->get()->setMiniBatchSize(val);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetTermCriteria(const LogisticRegression *cs, TermCriteria *rval)
-{
+CvStatus LogisticRegression_GetTermCriteria(const PtrLogisticRegression *cs, cv::TermCriteria *rval) {
     BEGIN_WRAP
-    *rval = cs->getTermCriteria();
+    *rval = cs->get()->getTermCriteria();
     END_WRAP
 }
 
-CvStatus LogisticRegression_SetTermCriteria(LogisticRegression *cs, TermCriteria val)
-{
+CvStatus LogisticRegression_SetTermCriteria(PtrLogisticRegression *cs, cv::TermCriteria val) {
     BEGIN_WRAP
-    cs->setTermCriteria(val);
+    cs->get()->setTermCriteria(val);
     END_WRAP
 }
 
-CvStatus LogisticRegression_Predict(const LogisticRegression *cs, InputArray samples, OutputArray results, int flags, float *rval)
-{
+CvStatus LogisticRegression_Predict(const PtrLogisticRegression *cs, CVInputArray samples, CVOutputArray results, int flags, float *rval) {
     BEGIN_WRAP
-    *rval = cs->predict(samples, results, flags);
+    *rval = cs->get()->predict(samples, results, flags);
     END_WRAP
 }
 
-CvStatus LogisticRegression_GetLearntThetas(const LogisticRegression *cs, Mat *rval)
-{
+CvStatus LogisticRegression_GetLearntThetas(const PtrLogisticRegression *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->get_learnt_thetas();
+    *rval = cs->get()->get_learnt_thetas();
     END_WRAP
 }
 
-CvStatus LogisticRegression_Create(Ptr<LogisticRegression> *rval)
-{
+CvStatus LogisticRegression_Create(PtrLogisticRegression *rval) {
     BEGIN_WRAP
-    *rval = LogisticRegression::create();
+    *rval = cv::ml::LogisticRegression::create();
     END_WRAP
 }
 
-CvStatus LogisticRegression_Load(const String& filepath, const String& nodeName, Ptr<LogisticRegression> *rval)
-{
+CvStatus LogisticRegression_Load(const CVString& filepath, const CVString& nodeName, PtrLogisticRegression *rval) {
     BEGIN_WRAP
-    *rval = LogisticRegression::load(filepath, nodeName);
+    *rval = cv::ml::LogisticRegression::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetWeights(SVMSGD *cs, Mat *rval)
-{
+CvStatus SVMSGD_GetWeights(PtrSVMSGD *cs, cv::Mat *rval) {
     BEGIN_WRAP
-    *rval = cs->getWeights();
+    *rval = cs->get()->getWeights();
     END_WRAP
 }
 
-CvStatus SVMSGD_GetShift(SVMSGD *cs, float *rval)
-{
+CvStatus SVMSGD_GetShift(PtrSVMSGD *cs, float *rval) {
     BEGIN_WRAP
-    *rval = cs->getShift();
+    *rval = cs->get()->getShift();
     END_WRAP
 }
 
-CvStatus SVMSGD_Create(Ptr<SVMSGD> *rval)
-{
+CvStatus SVMSGD_Create(PtrSVMSGD *rval) {
     BEGIN_WRAP
-    *rval = SVMSGD::create();
+    *rval = cv::ml::SVMSGD::create();
     END_WRAP
 }
 
-CvStatus SVMSGD_Load(const String& filepath, const String& nodeName, Ptr<SVMSGD> *rval)
-{
+CvStatus SVMSGD_Load(const CVString& filepath, const CVString& nodeName, PtrSVMSGD *rval) {
     BEGIN_WRAP
-    *rval = SVMSGD::load(filepath, nodeName);
+    *rval = cv::ml::SVMSGD::load(filepath, nodeName);
     END_WRAP
 }
 
-CvStatus SVMSGD_SetOptimalParameters(SVMSGD *cs, int svmsgdType, int marginType)
-{
+CvStatus SVMSGD_SetOptimalParameters(PtrSVMSGD *cs, int svmsgdType, int marginType) {
     BEGIN_WRAP
-    cs->setOptimalParameters(svmsgdType, marginType);
+    cs->get()->setOptimalParameters(svmsgdType, marginType);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetSvmsgdType(const SVMSGD *cs, int *rval)
-{
+CvStatus SVMSGD_GetSvmsgdType(const PtrSVMSGD *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getSvmsgdType();
+    *rval = cs->get()->getSvmsgdType();
     END_WRAP
 }
 
-CvStatus SVMSGD_SetSvmsgdType(SVMSGD *cs, int svmsgdType)
-{
+CvStatus SVMSGD_SetSvmsgdType(PtrSVMSGD *cs, int svmsgdType) {
     BEGIN_WRAP
-    cs->setSvmsgdType(svmsgdType);
+    cs->get()->setSvmsgdType(svmsgdType);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetMarginType(const SVMSGD *cs, int *rval)
-{
+CvStatus SVMSGD_GetMarginType(const PtrSVMSGD *cs, int *rval) {
     BEGIN_WRAP
-    *rval = cs->getMarginType();
+    *rval = cs->get()->getMarginType();
     END_WRAP
 }
 
-CvStatus SVMSGD_SetMarginType(SVMSGD *cs, int marginType)
-{
+CvStatus SVMSGD_SetMarginType(PtrSVMSGD *cs, int marginType) {
     BEGIN_WRAP
-    cs->setMarginType(marginType);
+    cs->get()->setMarginType(marginType);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetMarginRegularization(const SVMSGD *cs, float *rval)
-{
+CvStatus SVMSGD_GetMarginRegularization(const PtrSVMSGD *cs, float *rval) {
     BEGIN_WRAP
-    *rval = cs->getMarginRegularization();
+    *rval = cs->get()->getMarginRegularization();
     END_WRAP
 }
 
-CvStatus SVMSGD_SetMarginRegularization(SVMSGD *cs, float marginRegularization)
-{
+CvStatus SVMSGD_SetMarginRegularization(PtrSVMSGD *cs, float marginRegularization) {
     BEGIN_WRAP
-    cs->setMarginRegularization(marginRegularization);
+    cs->get()->setMarginRegularization(marginRegularization);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetInitialStepSize(const SVMSGD *cs, float *rval)
-{
+CvStatus SVMSGD_GetInitialStepSize(const PtrSVMSGD *cs, float *rval) {
     BEGIN_WRAP
-    *rval = cs->getInitialStepSize();
+    *rval = cs->get()->getInitialStepSize();
     END_WRAP
 }
 
-CvStatus SVMSGD_SetInitialStepSize(SVMSGD *cs, float InitialStepSize)
-{
+CvStatus SVMSGD_SetInitialStepSize(PtrSVMSGD *cs, float InitialStepSize) {
     BEGIN_WRAP
-    cs->setInitialStepSize(InitialStepSize);
+    cs->get()->setInitialStepSize(InitialStepSize);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetStepDecreasingPower(const SVMSGD *cs, float *rval)
-{
+CvStatus SVMSGD_GetStepDecreasingPower(const PtrSVMSGD *cs, float *rval) {
     BEGIN_WRAP
-    *rval = cs->getStepDecreasingPower();
+    *rval = cs->get()->getStepDecreasingPower();
     END_WRAP
 }
 
-CvStatus SVMSGD_SetStepDecreasingPower(SVMSGD *cs, float stepDecreasingPower)
-{
+CvStatus SVMSGD_SetStepDecreasingPower(PtrSVMSGD *cs, float stepDecreasingPower) {
     BEGIN_WRAP
-    cs->setStepDecreasingPower(stepDecreasingPower);
+    cs->get()->setStepDecreasingPower(stepDecreasingPower);
     END_WRAP
 }
 
-CvStatus SVMSGD_GetTermCriteria(const SVMSGD *cs, TermCriteria *rval)
-{
+CvStatus SVMSGD_GetTermCriteria(const PtrSVMSGD *cs, cv::TermCriteria *rval) {
     BEGIN_WRAP
-    *rval = cs->getTermCriteria();
+    *rval = cs->get()->getTermCriteria();
     END_WRAP
 }
 
-CvStatus SVMSGD_SetTermCriteria(SVMSGD *cs, const cv::TermCriteria &val)
-{
+CvStatus SVMSGD_SetTermCriteria(PtrSVMSGD *cs, const cv::TermCriteria &val) {
     BEGIN_WRAP
-    cs->setTermCriteria(val);
+    cs->get()->setTermCriteria(val);
     END_WRAP
 }
 
-CvStatus RandMVNormal(InputArray mean, InputArray cov, int nsamples, OutputArray samples)
-{
+CvStatus RandMVNormal(CVInputArray mean, CVInputArray cov, int nsamples, CVOutputArray samples) {
     BEGIN_WRAP
     cv::randMVNormal(mean, cov, nsamples, samples);
     END_WRAP
 }
 
-CvStatus CreateConcentricSpheresTestSet(int nsamples, int nfeatures, int nclasses, OutputArray samples, OutputArray responses)
-{
+CvStatus CreateConcentricSpheresTestSet(int nsamples, int nfeatures, int nclasses, CVOutputArray samples, CVOutputArray responses) {
     BEGIN_WRAP
     cv::createConcentricSpheresTestSet(nsamples, nfeatures, nclasses, samples, responses);
     END_WRAP
 }
 
 template<class SimulatedAnnealingSolverSystem>
-CvStatus SimulatedAnnealingSolver(SimulatedAnnealingSolverSystem& solverSystem, double initialTemperature, double finalTemperature, double coolingRatio, size_t iterationsPerStep, double* lastTemperature, cv::RNG& rngEnergy, int *rval)
-{
+CvStatus SimulatedAnnealingSolver(SimulatedAnnealingSolverSystem& solverSystem, double initialTemperature, double finalTemperature, double coolingRatio, size_t iterationsPerStep, double* lastTemperature, cv::RNG& rngEnergy, int *rval) {
     BEGIN_WRAP
     *rval = cv::simulatedAnnealingSolver(solverSystem, initialTemperature, finalTemperature, coolingRatio, iterationsPerStep, lastTemperature, rngEnergy);
     END_WRAP
